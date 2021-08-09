@@ -8,6 +8,7 @@ RUN dnf -y distrosync && \
       butane \
       fd-find \
       fedpkg \
+      flatpak-builder \
       fzf \
       go \
       jq \
