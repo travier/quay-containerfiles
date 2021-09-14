@@ -17,6 +17,7 @@ RUN dnf -y distrosync && \
       npm \
       pdf-stapler \
       pwgen \
+      python3-dateparser \
       ripgrep \
       ruby \
       ruby-devel \
