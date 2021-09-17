@@ -20,3 +20,7 @@ RUN dnf -y distrosync && \
     dnf install kdevelop breeze-cursor-theme breeze-icon-theme git-clang-format && \
     dnf builddep plasma-discover ; \
     dnf clean all
+
+# No need to clear the output as we will never use ZSH as a login shell and
+# this clears output when exiting toolboxes.
+RUN sed -i '/clear/d' /etc/zlogout
