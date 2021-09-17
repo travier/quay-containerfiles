@@ -33,3 +33,7 @@ RUN dnf -y distrosync && \
       zsh \
       --exclude=nodejs-docs,nodejs-full-i18n,btrfs-progs,abattis-cantarell-fonts,adobe-source-code-pro-fonts,systemd-networkd,mercurial-py3,mercurial-py2,subversion,dconf,grubby,kpartx,memstrack && \
     dnf clean all
+
+# No need to clear the output as we will never use ZSH as a login shell and
+# this clears output when exiting toolboxes.
+RUN sed -i '/clear/d' /etc/zlogout
