@@ -17,8 +17,8 @@ RUN dnf -y distrosync && \
       zsh \
       --exclude=btrfs-progs,abattis-cantarell-fonts,adobe-source-code-pro-fonts,systemd-networkd,mercurial-py3,mercurial-py2,subversion \
       && \
-    dnf install kdevelop breeze-cursor-theme breeze-icon-theme git-clang-format && \
-    dnf builddep plasma-discover ; \
+    dnf -y install kdevelop breeze-cursor-theme breeze-icon-theme git-clang-format && \
+    dnf -y builddep plasma-discover ; \
     dnf clean all
 
 # No need to clear the output as we will never use ZSH as a login shell and
