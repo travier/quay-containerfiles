@@ -24,6 +24,7 @@ RUN dnf -y distrosync && \
       git-clang-format \
       kdevelop \
       strace \
+      rpm-ostree-devel \
       && \
     dnf -y builddep \
       plasma-discover \
