@@ -1,5 +1,8 @@
 FROM registry.fedoraproject.org/fedora:34 as unzip
 
+# Keep container image for 6 months
+LABEL quay.expires-after=24w
+
 # From https://www.nomadproject.io/downloads
 ENV NOMAD_VERSION="1.1.5"
 ENV NOMAD_SHA256="7627c157eccec00729ff6a25b0c98aba5d886b0d36c1ec6e63861cb4b96b6780  nomad_1.1.5_linux_amd64.zip"
