@@ -1,5 +1,8 @@
 FROM registry.fedoraproject.org/fedora-toolbox:35
 
+# Keep container image for 2 months
+LABEL quay.expires-after=8w
+
 # Ignore errors encountered during flatpak install in:
 # dnf builddep plasma-discover
 RUN dnf -y distrosync && \
