@@ -3,8 +3,11 @@ FROM registry.fedoraproject.org/fedora-toolbox:35
 # Keep container image for 2 months
 LABEL quay.expires-after=8w
 
-# Ignore errors encountered during flatpak install in:
-# dnf builddep plasma-discover
+# - Install common development tools
+# - Remove mlocate
+# - Install pacakges for KDE development
+# - Ignore errors encountered during flatpak install in:
+#   dnf builddep plasma-discover
 RUN dnf -y distrosync && \
     dnf -y install \
       fd-find \
@@ -32,6 +35,7 @@ RUN dnf -y distrosync && \
     dnf -y builddep \
       plasma-discover \
       ; \
+    dnf -y remove mlocate && \
     dnf clean all
 
 # No need to clear the output as we will never use ZSH as a login shell and
