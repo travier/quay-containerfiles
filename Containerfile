@@ -11,6 +11,7 @@ RUN dnf -y distrosync && \
       awscli \
       brotli \
       butane \
+      centpkg \
       fd-find \
       fedpkg \
       flatpak-builder \
