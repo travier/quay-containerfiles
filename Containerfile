@@ -19,7 +19,6 @@ RUN dnf -y distrosync && \
       go \
       jq \
       meson \
-      minicom \
       npm \
       pdf-stapler \
       pwgen \
