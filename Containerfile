@@ -27,6 +27,7 @@ RUN dnf -y distrosync && \
       ruby \
       ruby-devel \
       rubygem-bundler \
+      sqlite \
       vim \
       youtube-dl \
       zoxide \
