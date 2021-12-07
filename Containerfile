@@ -4,6 +4,7 @@ FROM registry.fedoraproject.org/fedora-toolbox:35
 LABEL quay.expires-after=8w
 
 # - Install common development tools
+# - Install build dependencies for some Rust applications
 # - Remove mlocate
 RUN dnf -y distrosync && \
     dnf -y install \
@@ -32,12 +33,12 @@ RUN dnf -y distrosync && \
       youtube-dl \
       zoxide \
       zsh \
+      --exclude=nodejs-docs,nodejs-full-i18n,btrfs-progs,abattis-cantarell-fonts,adobe-source-code-pro-fonts,systemd-networkd,mercurial-py3,mercurial-py2,subversion && \
+    dnf -y install \
       openssl-devel \
       perl-FindBin \
       perl-IPC-Cmd \
-      perl-File-Compare \
-      sqlite \
-      --exclude=nodejs-docs,nodejs-full-i18n,btrfs-progs,abattis-cantarell-fonts,adobe-source-code-pro-fonts,systemd-networkd,mercurial-py3,mercurial-py2,subversion && \
+      perl-File-Compare && \
     dnf -y remove mlocate && \
     dnf clean all
 
