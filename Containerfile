@@ -1,7 +1,7 @@
 FROM registry.fedoraproject.org/fedora:35
 
 RUN dnf -y update && \
-    dnf -y install php-cli php-fpm \
+    dnf -y install git php-cli php-fpm \
         /etc/php.d/20-bz2.ini \
         /etc/php.d/20-calendar.ini \
         /etc/php.d/20-ctype.ini \
