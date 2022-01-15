@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:34
+FROM registry.fedoraproject.org/fedora:35
 
 # Keep container image for 2 months
 LABEL quay.expires-after=8w
