@@ -13,6 +13,7 @@ RUN dnf -y distrosync && \
       brotli \
       butane \
       centpkg \
+      createrepo_c \
       fd-find \
       fedpkg \
       flatpak-builder \
@@ -20,6 +21,8 @@ RUN dnf -y distrosync && \
       go \
       jq \
       meson \
+      minisign \
+      mkpasswd \
       npm \
       pdf-stapler \
       pwgen \
