@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:34 as unzip
+FROM registry.fedoraproject.org/fedora:35 as unzip
 
 # Keep container image for 6 months
 LABEL quay.expires-after=24w
