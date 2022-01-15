@@ -14,7 +14,6 @@ RUN dnf -y update && \
         /etc/php.d/20-gettext.ini \
         /etc/php.d/20-iconv.ini \
         /etc/php.d/20-intl.ini \
-        /etc/php.d/20-json.ini \
         /etc/php.d/20-ldap.ini \
         /etc/php.d/20-mbstring.ini \
         /etc/php.d/20-pdo.ini \
