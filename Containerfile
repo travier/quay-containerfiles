@@ -33,7 +33,6 @@ RUN dnf -y distrosync && \
       rubygem-bundler \
       sqlite \
       vim \
-      youtube-dl \
       zoxide \
       zsh \
       --exclude=nodejs-docs,nodejs-full-i18n,btrfs-progs,abattis-cantarell-fonts,adobe-source-code-pro-fonts,systemd-networkd,mercurial-py3,mercurial-py2,subversion && \
