@@ -4,8 +4,8 @@ FROM registry.fedoraproject.org/fedora:35 as unzip
 LABEL quay.expires-after=24w
 
 # From https://www.nomadproject.io/downloads
-ENV NOMAD_VERSION="1.2.3"
-ENV NOMAD_SHA256="9e5c6354345c88f0ce3c9ceb6a61471903596febc933245a0fbe1afc89c21d31  nomad_1.2.3_linux_amd64.zip"
+ENV NOMAD_VERSION="1.2.4"
+ENV NOMAD_SHA256="51ae6aede9a2ec1bc73065b84881c5a4d67eeb1328ee5bf189b10c4f4e72805d  nomad_1.2.4_linux_amd64.zip"
 
 # From https://github.com/hashicorp/nomad-driver-podman/releases
 ENV PODMAN_DRIVER_VERSION="0.3.0"
