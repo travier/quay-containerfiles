@@ -13,6 +13,7 @@ RUN dnf -y distrosync && \
       brotli \
       butane \
       centpkg \
+      copr-cli \
       createrepo_c \
       fd-find \
       fedpkg \
