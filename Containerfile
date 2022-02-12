@@ -4,10 +4,11 @@ FROM registry.fedoraproject.org/fedora-toolbox:35
 LABEL quay.expires-after=8w
 
 # - Install common development tools
+# - Install all build deps for kdesrc-build (plasma only, no apps)
+# - Install extra packages for KDE development
+# - Install build deps for Discover development. This will ignore errors
+#   encountered during flatpak installation.
 # - Remove mlocate
-# - Install pacakges for KDE development
-# - Ignore errors encountered during flatpak install in:
-#   dnf builddep plasma-discover
 RUN dnf -y distrosync && \
     dnf -y install \
       fd-find \
@@ -22,6 +23,82 @@ RUN dnf -y distrosync && \
       zoxide \
       zsh \
       --exclude=btrfs-progs,abattis-cantarell-fonts,adobe-source-code-pro-fonts,systemd-networkd,mercurial-py3,mercurial-py2,subversion \
+      && \
+    dnf -y install \
+      "cmake(Gpgmepp)" \
+      "pkgconfig(gstreamer-1.0)" \
+      "pkgconfig(gstreamer-app-1.0)" \
+      "pkgconfig(gstreamer-audio-1.0)" \
+      "pkgconfig(gstreamer-video-1.0)" \
+      "pkgconfig(libcanberra)" \
+      "pkgconfig(libnl-3.0)" \
+      "pkgconfig(libnl-route-3.0)" \
+      "pkgconfig(libnm)" \
+      "pkgconfig(libqrencode)" \
+      "pkgconfig(xcb-icccm)" \
+      "pkgconfig(xext)" \
+      "pkgconfig(xkeyboard-config)" \
+      "pkgconfig(xxf86vm)" \
+      ModemManager-devel \
+      bison \
+      boost-devel \
+      cmake \
+      dialog \
+      flex \
+      giflib-devel \
+      gperf \
+      gtk3-devel \
+      libSM-devel \
+      libXfixes-devel \
+      libXft-devel \
+      libXi-devel \
+      libXrender-devel \
+      libXtst-devel \
+      libattr-devel \
+      libepoxy-devel \
+      libgcrypt-devel \
+      libical-devel \
+      libjpeg-devel \
+      libqalculate-devel \
+      libxkbfile-devel \
+      libxslt-devel \
+      lm_sensors-devel \
+      lmdb-devel \
+      mesa-libEGL-devel \
+      mesa-libGL-devel \
+      mesa-libgbm-devel \
+      openssl-devel \
+      pam-devel \
+      perl-File-Copy \
+      perl-FindBin \
+      perl-IPC-Cmd \
+      perl-JSON-PP \
+      perl-YAML-PP \
+      perl-autodie \
+      pipewire-devel \
+      plymouth-devel \
+      polkit-devel \
+      pulseaudio-libs-devel \
+      python3-cairo-devel \
+      qt5-qtbase-private-devel \
+      qt5-qtbase-static \
+      qt5-qtquickcontrols2-devel \
+      qt5-qtscript-devel \
+      qt5-qtsensors-devel \
+      qt5-qttools-devel \
+      qt5-qttools-static \
+      qt5-qtwayland-devel \
+      qt5-qtwebkit-devel \
+      sassc \
+      wayland-devel \
+      wayland-protocols-devel \
+      xcb-util-cursor-devel \
+      xcb-util-devel \
+      xcb-util-image-devel \
+      xcb-util-keysyms-devel \
+      xcb-util-keysyms-devel \
+      xcb-util-wm-devel \
+      xcb-util-wm-devel \
       && \
     dnf -y install \
       breeze-cursor-theme \
