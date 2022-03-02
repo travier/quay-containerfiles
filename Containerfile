@@ -1,12 +1,11 @@
-FROM registry.fedoraproject.org/fedora-toolbox:35
+FROM registry.fedoraproject.org/fedora:35
 
 # Keep container image for 2 months
 LABEL quay.expires-after=8w
 
-RUN dnf -y distrosync && \
+RUN dnf -y update && \
     dnf -y install \
       vagrant \
       vagrant-libvirt \
     && \
-    dnf -y remove mlocate && \
     dnf clean all
