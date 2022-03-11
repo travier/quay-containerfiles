@@ -11,6 +11,7 @@ LABEL quay.expires-after=8w
 # - Remove mlocate
 RUN dnf -y distrosync && \
     dnf -y install \
+      ShellCheck \
       fd-find \
       fedpkg \
       flatpak-builder \
