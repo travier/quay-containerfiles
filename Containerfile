@@ -9,6 +9,7 @@ LABEL quay.expires-after=8w
 RUN dnf -y distrosync && \
     dnf -y install \
       ImageMagick \
+      ShellCheck \
       awscli \
       brotli \
       butane \
