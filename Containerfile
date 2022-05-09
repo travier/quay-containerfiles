@@ -4,8 +4,8 @@ FROM registry.fedoraproject.org/fedora:35 as unzip
 LABEL quay.expires-after=24w
 
 # From https://www.vaultproject.io/downloads
-ENV VAULT_VERSION="1.10.0"
-ENV VAULT_SHA256="ec06473d79e77c05700f051278c54b0f7b6f2df64f57f630a0690306323f1175  vault_1.10.0_linux_amd64.zip"
+ENV VAULT_VERSION="1.10.2"
+ENV VAULT_SHA256="97f355fc435e5e768f1c7f40b6e1c40d6062e01dcfc0adb6b966dab49e9de7d1  vault_1.10.2_linux_amd64.zip"
 
 RUN dnf -y update && \
     dnf -y install unzip && \
