@@ -113,6 +113,7 @@ RUN dnf -y distrosync && \
       && \
     dnf -y builddep \
       plasma-discover \
+      qt5-qtbase \
       ; \
     dnf -y remove mlocate && \
     dnf clean all
