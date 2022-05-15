@@ -100,6 +100,7 @@ RUN dnf -y distrosync && \
       xcb-util-keysyms-devel \
       xcb-util-wm-devel \
       xcb-util-wm-devel \
+      xdg-desktop-portal-devel \
       && \
     dnf -y install \
       breeze-cursor-theme \
