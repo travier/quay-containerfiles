@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:35 as unzip
+FROM registry.fedoraproject.org/fedora:36 as unzip
 
 # From https://github.com/hashicorp/nomad-driver-podman/releases
 ENV PODMAN_DRIVER_VERSION="0.3.0"
@@ -12,7 +12,7 @@ RUN curl -O "https://releases.hashicorp.com/nomad-driver-podman/${PODMAN_DRIVER_
 RUN echo "${PODMAN_DRIVER_SHA256}" | sha256sum --check
 RUN unzip nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_amd64.zip
 
-FROM registry.fedoraproject.org/fedora:35
+FROM registry.fedoraproject.org/fedora:36
 
 RUN dnf -y update && \
     dnf -y install dnf-plugins-core && \

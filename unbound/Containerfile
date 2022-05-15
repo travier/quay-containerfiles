@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:35
+FROM registry.fedoraproject.org/fedora:36
 
 RUN dnf -y update && \
     dnf -y install unbound && \
