@@ -13,19 +13,24 @@ RUN dnf -y distrosync && \
       awscli \
       brotli \
       butane \
+      dejavu-sans-fonts \
+      dejavu-sans-mono-fonts \
       centpkg \
       copr-cli \
       createrepo_c \
+      fbrnch \
       fd-find \
       fedpkg \
       flatpak-builder \
       fzf \
       go \
+      graphviz \
       jq \
       meson \
       minisign \
       mkpasswd \
       npm \
+      pandoc \
       pdf-stapler \
       pwgen \
       python3-dateparser \
