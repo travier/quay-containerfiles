@@ -23,6 +23,7 @@ RUN dnf -y distrosync && \
       fedpkg \
       flatpak-builder \
       fzf \
+      g++ \
       go \
       graphviz \
       jq \
