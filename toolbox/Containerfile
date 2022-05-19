@@ -33,6 +33,7 @@ RUN dnf -y distrosync && \
       pandoc \
       pdf-stapler \
       pwgen \
+      pylint \
       python3-dateparser \
       ripgrep \
       ruby \
