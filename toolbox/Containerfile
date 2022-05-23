@@ -3,10 +3,16 @@ FROM registry.fedoraproject.org/fedora-toolbox:36
 # Keep container image for 2 months
 LABEL quay.expires-after=8w
 
+# - Add RPM Fusion repositories
 # - Install common development tools
 # - Install build dependencies for some Rust applications
 # - Remove mlocate
-RUN dnf -y distrosync && \
+RUN dnf install -y \
+    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm \
+    && \
+    dnf -y distrosync \
+    && \
     dnf -y install \
       ImageMagick \
       ShellCheck \
@@ -39,6 +45,10 @@ RUN dnf -y distrosync && \
       pylint \
       python3-dateparser \
       ripgrep \
+      rpmfusion-free-release \
+      rpmfusion-free-release-tainted \
+      rpmfusion-nonfree-release \
+      rpmfusion-nonfree-release-tainted \
       ruby \
       ruby-devel \
       rubygem-bundler \
@@ -46,7 +56,7 @@ RUN dnf -y distrosync && \
       vim \
       zoxide \
       zsh \
-      --exclude=nodejs-docs,nodejs-full-i18n,btrfs-progs,abattis-cantarell-fonts,adobe-source-code-pro-fonts,systemd-networkd,mercurial-py3,mercurial-py2,subversion && \
+      --exclude=nodejs-docs,nodejs-full-i18n,btrfs-progs,abattis-cantarell-fonts,adobe-source-code-pro-fonts,systemd-networkd,mercurial-py3,mercurial-py2,subversion,dconf,grubby,kpartx,memstrack && \
     dnf -y install \
       openssl-devel \
       perl-FindBin \
