@@ -24,9 +24,11 @@ RUN dnf -y distrosync && \
       flatpak-builder \
       fzf \
       g++ \
+      gcc \
       go \
       graphviz \
       jq \
+      make \
       meson \
       minisign \
       mkpasswd \
