@@ -1,6 +1,6 @@
 FROM registry.fedoraproject.org/fedora-toolbox:36
 
-# Keep container image for 2 months
+# Keep container image for ~2 months
 LABEL quay.expires-after=8w
 
 # - Install common development tools

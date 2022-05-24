@@ -1,7 +1,7 @@
 FROM registry.fedoraproject.org/fedora:36 as unzip
 
-# Keep container image for 6 months
-LABEL quay.expires-after=24w
+# Keep container image for ~2 months
+LABEL quay.expires-after=8w
 
 # From https://www.vaultproject.io/downloads
 ENV VAULT_VERSION="1.10.3"

@@ -1,5 +1,8 @@
 FROM registry.fedoraproject.org/fedora:36 as unzip
 
+# Keep container image for ~2 months
+LABEL quay.expires-after=8w
+
 # From https://github.com/hashicorp/nomad-driver-podman/releases
 ENV PODMAN_DRIVER_VERSION="0.3.0"
 ENV PODMAN_DRIVER_SHA256="23ce5a3f9b41bbd1bc97d8e61e043f5e01d1d040ae9a2469267cbb851c8bbc90  nomad-driver-podman_0.3.0_linux_amd64.zip"
