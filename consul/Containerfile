@@ -4,8 +4,8 @@ FROM registry.fedoraproject.org/fedora:36 as unzip
 LABEL quay.expires-after=8w
 
 # From https://www.consulproject.io/downloads
-ENV CONSUL_VERSION="1.12.2"
-ENV CONSUL_SHA256="35f85098f5956ef3aca66ec2d2d2a803d1f3359b4dec13382c6ac895344a1f4c  consul_1.12.2_linux_amd64.zip"
+ENV CONSUL_VERSION="1.12.3"
+ENV CONSUL_SHA256="620a47cfba34bdf918b4c3238d22f6318b29403888cfd927c6006a4ac1b1c9f6  consul_1.12.3_linux_amd64.zip"
 
 RUN dnf -y update && \
     dnf -y install unzip && \
