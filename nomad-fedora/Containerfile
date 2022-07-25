@@ -21,7 +21,7 @@ RUN dnf -y update && \
     dnf -y install dnf-plugins-core && \
     dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo && \
     dnf -y install nomad && \
-    dnf clean all
+    dnf clean all # nocache 2022-07-25
 
 RUN mkdir --parents /usr/lib/nomad/plugins
 COPY --from=unzip /nomad-driver-podman /usr/lib/nomad/plugins/nomad-driver-podman
