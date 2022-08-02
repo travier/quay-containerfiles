@@ -15,6 +15,7 @@ RUN dnf -y distrosync && \
       butane \
       dejavu-sans-fonts \
       dejavu-sans-mono-fonts \
+      centos-packager \
       centpkg \
       copr-cli \
       createrepo_c \
