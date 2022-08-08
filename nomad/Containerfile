@@ -1,8 +1,8 @@
 FROM registry.fedoraproject.org/fedora:36 as unzip
 
 # From https://www.nomadproject.io/downloads
-ENV NOMAD_VERSION="1.3.2"
-ENV NOMAD_SHA256="fc6b3800935c621633d98148ea30737ab8ac1f698020f45b28b07ac61fbf4a96  nomad_1.3.2_linux_amd64.zip"
+ENV NOMAD_VERSION="1.3.3"
+ENV NOMAD_SHA256="d908811cebe2a8373e93c4ad3d09af5c706241878ff3f21ee0f182b4ecb571f2  nomad_1.3.3_linux_amd64.zip"
 
 # From https://github.com/hashicorp/nomad-driver-podman/releases
 ENV PODMAN_DRIVER_VERSION="0.4.0"
