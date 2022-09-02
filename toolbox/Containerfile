@@ -29,6 +29,7 @@ RUN dnf -y distrosync && \
       go \
       graphviz \
       jq \
+      json-glib-validate \
       make \
       meson \
       minisign \
