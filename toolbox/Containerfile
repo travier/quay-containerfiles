@@ -40,6 +40,7 @@ RUN dnf -y distrosync && \
       pwgen \
       pylint \
       python3-dateparser \
+      python3-rust2rpm \
       ripgrep \
       ruby \
       ruby-devel \
