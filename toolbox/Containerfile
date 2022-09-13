@@ -13,12 +13,12 @@ RUN dnf -y distrosync && \
       awscli \
       brotli \
       butane \
-      dejavu-sans-fonts \
-      dejavu-sans-mono-fonts \
       centos-packager \
       centpkg \
       copr-cli \
       createrepo_c \
+      dejavu-sans-fonts \
+      dejavu-sans-mono-fonts \
       fbrnch \
       fd-find \
       fedmod \
