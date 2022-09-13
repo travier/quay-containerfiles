@@ -21,6 +21,7 @@ RUN dnf -y distrosync && \
       createrepo_c \
       fbrnch \
       fd-find \
+      fedmod \
       fedpkg \
       flatpak-builder \
       fzf \
