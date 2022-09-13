@@ -46,6 +46,7 @@ RUN dnf -y distrosync && \
       ruby \
       ruby-devel \
       rubygem-bundler \
+      shfmt \
       sqlite \
       vim \
       zoxide \
