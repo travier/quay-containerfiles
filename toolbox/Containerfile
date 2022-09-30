@@ -33,6 +33,7 @@ RUN dnf -y distrosync && \
       json-glib-validate \
       make \
       meson \
+      qrencode \
       minisign \
       mkpasswd \
       npm \
