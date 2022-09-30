@@ -1,8 +1,8 @@
 FROM registry.fedoraproject.org/fedora:36 as unzip
 
 # From https://www.vaultproject.io/downloads
-ENV VAULT_VERSION="1.11.2"
-ENV VAULT_SHA256="ace4138269cb7214c73529f984b793d66074e3a3ad373eaa77bc9b39490d9ef9  vault_1.11.2_linux_amd64.zip"
+ENV VAULT_VERSION="1.11.4"
+ENV VAULT_SHA256="8764a55bdd69faedaaf5d50325d5e6806041e6305b1e66454b46dc6426d26556  vault_1.11.4_linux_amd64.zip"
 
 RUN dnf -y update && \
     dnf -y install unzip && \
