@@ -59,7 +59,7 @@ RUN dnf -y distrosync && \
       perl-IPC-Cmd \
       perl-File-Compare && \
     dnf -y remove mlocate && \
-    dnf clean all # nocache 2022-09-26
+    dnf clean all # nocache 2022-10-13
 
 # No need to clear the output as we will never use ZSH as a login shell and
 # this clears output when exiting toolboxes.

@@ -5,7 +5,7 @@ LABEL quay.expires-after=8w
 
 RUN dnf -y update && \
     dnf -y install nginx && \
-    dnf clean all # nocache 2022-09-26
+    dnf clean all # nocache 2022-10-13
 
 USER nginx
 CMD ["/usr/sbin/nginx"]
