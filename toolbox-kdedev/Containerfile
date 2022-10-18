@@ -114,6 +114,8 @@ RUN dnf -y distrosync && \
       && \
     dnf -y builddep \
       plasma-discover \
+      kf5-purpose-devel \
+      qt5-qtwebview-devel \
       qt5-qtbase \
       ; \
     dnf -y remove mlocate && \
