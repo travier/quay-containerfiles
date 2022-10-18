@@ -108,8 +108,9 @@ RUN dnf -y distrosync && \
       gdb \
       git-clang-format \
       kdevelop \
-      strace \
+      qgit \
       rpm-ostree-devel \
+      strace \
       && \
     dnf -y builddep \
       plasma-discover \
