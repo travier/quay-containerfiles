@@ -9,7 +9,7 @@ on:
     branches:
       - main
     paths:
-      - consul/*
+      - vault/*
       - .github/workflows/vault.yml
   push:
     branches:

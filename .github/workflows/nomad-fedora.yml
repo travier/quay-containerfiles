@@ -9,7 +9,7 @@ on:
     branches:
       - main
     paths:
-      - consul/*
+      - nomad-fedora/*
       - .github/workflows/nomad-fedora.yml
   push:
     branches:
