@@ -1,4 +1,4 @@
-name: "Build Consul image"
+name: "Build Nomad (Fedora) image"
 
 permissions: read-all
 
@@ -7,8 +7,8 @@ on:
     branches:
       - main
     paths:
-      - consul/*
-      - .github/workflows/consul.yml
+      - nomad-fedora/*
+      - .github/workflows/nomad-fedora.yml
   schedule:
     - cron:  '0 0 * * MON'
 
@@ -16,7 +16,7 @@ on:
 concurrency: ${{ github.workflow }}
 
 env:
-  IMAGE_NAME: "consul"
+  IMAGE_NAME: "nomad-fedora"
   REGISTRY: "quay.io/travier"
 
 jobs:

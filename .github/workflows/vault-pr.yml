@@ -1,0 +1,31 @@
+name: "Build Vault image (PRs)"
+
+permissions: read-all
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - vault/*
+      - .github/workflows/vault-pr.yml
+
+env:
+  IMAGE_NAME: "vault"
+  REGISTRY: "quay.io/travier"
+
+jobs:
+  build-push-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Build container image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          context: ${{ env.IMAGE_NAME }}
+          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          containerfiles: ${{ env.IMAGE_NAME }}/Containerfile
+          layers: false
+          oci: true

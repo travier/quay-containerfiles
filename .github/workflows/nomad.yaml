@@ -1,4 +1,4 @@
-name: "Build Consul image"
+name: "Build Nomad image"
 
 permissions: read-all
 
@@ -7,8 +7,8 @@ on:
     branches:
       - main
     paths:
-      - consul/*
-      - .github/workflows/consul.yml
+      - nomad/*
+      - .github/workflows/nomad.yml
   schedule:
     - cron:  '0 0 * * MON'
 
@@ -16,7 +16,7 @@ on:
 concurrency: ${{ github.workflow }}
 
 env:
-  IMAGE_NAME: "consul"
+  IMAGE_NAME: "nomad"
   REGISTRY: "quay.io/travier"
 
 jobs:
@@ -31,7 +31,7 @@ jobs:
         with:
           context: ${{ env.IMAGE_NAME }}
           image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: latest ${{ github.sha }}
+          tags: latest ${{ env.GITHUB_SHA }}
           containerfiles: ${{ env.IMAGE_NAME }}/Containerfile
           layers: false
           oci: true
@@ -43,4 +43,4 @@ jobs:
           password: ${{ secrets.BOT_SECRET }}
           image: ${{ env.IMAGE_NAME }}
           registry: ${{ env.REGISTRY }}
-          tags: latest ${{ github.sha }}
+          tags: latest ${{ env.GITHUB_SHA }}
