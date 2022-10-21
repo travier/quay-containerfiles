@@ -6,6 +6,9 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - consul/*
+      - .github/workflows/consul.yml
   push:
     branches:
       - main
