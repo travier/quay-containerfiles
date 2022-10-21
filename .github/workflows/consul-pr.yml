@@ -8,7 +8,7 @@ on:
       - main
     paths:
       - consul/*
-      - .github/workflows/consul-pr.yaml
+      - .github/workflows/consul-pr.yml
 
 env:
   IMAGE_NAME: "consul"

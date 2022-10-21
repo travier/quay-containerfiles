@@ -8,7 +8,7 @@ on:
       - main
     paths:
       - consul/*
-      - .github/workflows/consul.yaml
+      - .github/workflows/consul.yml
   schedule:
     - cron:  '0 0 * * MON'
 
