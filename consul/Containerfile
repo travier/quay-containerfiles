@@ -1,6 +1,6 @@
 FROM registry.fedoraproject.org/fedora:36 as unzip
 
-# From https://www.consulproject.io/downloads
+# From https://developer.hashicorp.com/consul/downloads
 ENV CONSUL_VERSION="1.13.3"
 ENV CONSUL_SHA256="5370b0b5bf765530e28cb80f90dcb47bd7d6ba78176c1ab2430f56e460ed279c  consul_1.13.3_linux_amd64.zip"
 
@@ -18,4 +18,5 @@ FROM scratch
 LABEL quay.expires-after=8w
 
 COPY --from=unzip /consul .
+
 CMD ["/consul"]
