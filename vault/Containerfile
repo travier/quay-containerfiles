@@ -1,16 +1,16 @@
 FROM registry.fedoraproject.org/fedora:36 as unzip
 
-# From https://www.vaultproject.io/downloads
-ENV VAULT_VERSION="1.12.0"
-ENV VAULT_SHA256="56d140b34bec780cd458672e39b3bb0ea9e4b7e4fb9ea7e15de31e1562130d7a  vault_1.12.0_linux_amd64.zip"
+# From https://developer.hashicorp.com/vault/downloads
+ENV NAME="vault"
+ENV VERSION="1.12.0"
+ENV SHA256="56d140b34bec780cd458672e39b3bb0ea9e4b7e4fb9ea7e15de31e1562130d7a  vault_1.12.0_linux_amd64.zip"
 
-RUN dnf -y update && \
-    dnf -y install unzip && \
+RUN dnf -y install unzip && \
     dnf clean all
 
-RUN curl -O "https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip"
-RUN echo "${VAULT_SHA256}" | sha256sum --check
-RUN unzip vault_${VAULT_VERSION}_linux_amd64.zip
+RUN curl -O "https://releases.hashicorp.com/${NAME}/${VERSION}/${NAME}_${VERSION}_linux_amd64.zip"
+RUN echo "${SHA256}" | sha256sum --check
+RUN unzip "${NAME}_${VERSION}_linux_amd64.zip"
 
 FROM scratch
 
@@ -18,4 +18,5 @@ FROM scratch
 LABEL quay.expires-after=8w
 
 COPY --from=unzip /vault .
+
 CMD ["/vault"]

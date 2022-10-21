@@ -1,16 +1,16 @@
 FROM registry.fedoraproject.org/fedora:36 as unzip
 
-# From https://github.com/hashicorp/nomad-driver-podman/releases
-ENV PODMAN_DRIVER_VERSION="0.4.0"
-ENV PODMAN_DRIVER_SHA256="f905f9c38db8cec1542b92f69233488d5bf94e30fe9a0fae9ac03b30c1e2cfea  nomad-driver-podman_0.4.0_linux_amd64.zip"
-
-RUN dnf -y update && \
-    dnf -y install unzip && \
+RUN dnf -y install unzip && \
     dnf clean all
 
-RUN curl -O "https://releases.hashicorp.com/nomad-driver-podman/${PODMAN_DRIVER_VERSION}/nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_amd64.zip"
-RUN echo "${PODMAN_DRIVER_SHA256}" | sha256sum --check
-RUN unzip nomad-driver-podman_${PODMAN_DRIVER_VERSION}_linux_amd64.zip
+# From https://github.com/hashicorp/nomad-driver-podman/releases
+ENV NAME="nomad-driver-podman"
+ENV VERSION="0.4.0"
+ENV SHA256="f905f9c38db8cec1542b92f69233488d5bf94e30fe9a0fae9ac03b30c1e2cfea  nomad-driver-podman_0.4.0_linux_amd64.zip"
+
+RUN curl -O "https://releases.hashicorp.com/${NAME}/${VERSION}/${NAME}_${VERSION}_linux_amd64.zip"
+RUN echo "${SHA256}" | sha256sum --check
+RUN unzip "${NAME}_${VERSION}_linux_amd64.zip"
 
 FROM registry.fedoraproject.org/fedora:36
 
@@ -21,7 +21,7 @@ RUN dnf -y update && \
     dnf -y install dnf-plugins-core && \
     dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo && \
     dnf -y install nomad && \
-    dnf clean all # nocache 2022-10-13
+    dnf clean all
 
 RUN mkdir --parents /usr/lib/nomad/plugins
 COPY --from=unzip /nomad-driver-podman /usr/lib/nomad/plugins/nomad-driver-podman

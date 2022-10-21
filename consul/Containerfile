@@ -1,16 +1,16 @@
 FROM registry.fedoraproject.org/fedora:36 as unzip
 
 # From https://developer.hashicorp.com/consul/downloads
-ENV CONSUL_VERSION="1.13.3"
-ENV CONSUL_SHA256="5370b0b5bf765530e28cb80f90dcb47bd7d6ba78176c1ab2430f56e460ed279c  consul_1.13.3_linux_amd64.zip"
+ENV NAME="consul"
+ENV VERSION="1.13.3"
+ENV SHA256="5370b0b5bf765530e28cb80f90dcb47bd7d6ba78176c1ab2430f56e460ed279c  consul_1.13.3_linux_amd64.zip"
 
-RUN dnf -y update && \
-    dnf -y install unzip && \
+RUN dnf -y install unzip && \
     dnf clean all
 
-RUN curl -O "https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip"
-RUN echo "${CONSUL_SHA256}" | sha256sum --check
-RUN unzip consul_${CONSUL_VERSION}_linux_amd64.zip
+RUN curl -O "https://releases.hashicorp.com/${NAME}/${VERSION}/${NAME}_${VERSION}_linux_amd64.zip"
+RUN echo "${SHA256}" | sha256sum --check
+RUN unzip "${NAME}_${VERSION}_linux_amd64.zip"
 
 FROM scratch
 
