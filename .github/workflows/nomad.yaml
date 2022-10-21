@@ -3,6 +3,9 @@ name: "Build Nomad image"
 permissions: read-all
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
@@ -12,8 +15,8 @@ on:
   schedule:
     - cron:  '0 0 * * MON'
 
-# Prevent multiple workflow runs from racing
-concurrency: ${{ github.workflow }}
+# Prevent multiple workflow runs from racing (mostly for the main branch)
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
   IMAGE_NAME: "nomad"
@@ -31,16 +34,17 @@ jobs:
         with:
           context: ${{ env.IMAGE_NAME }}
           image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: latest ${{ env.GITHUB_SHA }}
+          tags: latest ${{ github.sha }}
           containerfiles: ${{ env.IMAGE_NAME }}/Containerfile
           layers: false
           oci: true
 
       - name: Push to Quay.io
         uses: redhat-actions/push-to-registry@v2
+        if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref_name == 'refs/heads/main'
         with:
           username: ${{ secrets.BOT_USERNAME }}
           password: ${{ secrets.BOT_SECRET }}
           image: ${{ env.IMAGE_NAME }}
           registry: ${{ env.REGISTRY }}
-          tags: latest ${{ env.GITHUB_SHA }}
+          tags: latest ${{ github.sha }}
