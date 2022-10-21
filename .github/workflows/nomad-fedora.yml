@@ -1,6 +1,8 @@
 name: "Build Nomad (Fedora) image"
 
-permissions: read-all
+env:
+  IMAGE_NAME: "nomad-fedora"
+  REGISTRY: "quay.io/travier"
 
 on:
   pull_request:
@@ -8,7 +10,7 @@ on:
       - main
     paths:
       - consul/*
-      - .github/workflows/consul.yml
+      - .github/workflows/nomad-fedora.yml
   push:
     branches:
       - main
@@ -18,12 +20,14 @@ on:
   schedule:
     - cron:  '0 0 * * MON'
 
-# Prevent multiple workflow runs from racing (mostly for the main branch)
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+permissions: read-all
 
-env:
-  IMAGE_NAME: "nomad-fedora"
-  REGISTRY: "quay.io/travier"
+# Prevent multiple workflow runs from racing to ensure that pushes are made
+# sequentialy for the main branch. Also cancel in progress workflow runs for
+# pull requests only.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build-push-image:
