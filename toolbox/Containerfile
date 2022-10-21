@@ -30,7 +30,7 @@ RUN dnf -y distrosync && \
       go \
       graphviz \
       jq \
-      json-glib-validate \
+      json-glib-devel \
       make \
       meson \
       qrencode \
