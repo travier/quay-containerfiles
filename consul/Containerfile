@@ -1,8 +1,8 @@
 FROM registry.fedoraproject.org/fedora:36 as unzip
 
 # From https://www.consulproject.io/downloads
-ENV NOMAD_VERSION="1.13.2"
-ENV NOMAD_SHA256="a72e88cbfec6c0fb3620cd58314ff0b42fc9d605a5192d6a568a417180f0b35f  consul_1.13.2_linux_amd64.zip"
+ENV CONSUL_VERSION="1.13.3"
+ENV CONSUL_SHA256="5370b0b5bf765530e28cb80f90dcb47bd7d6ba78176c1ab2430f56e460ed279c  consul_1.13.3_linux_amd64.zip"
 
 RUN dnf -y update && \
     dnf -y install unzip && \
