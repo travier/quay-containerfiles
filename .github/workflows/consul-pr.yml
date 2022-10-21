@@ -8,7 +8,7 @@ on:
       - main
     paths:
       - consul/*
-      - .github/workflows/consul.yaml
+      - .github/workflows/consul-pr.yaml
 
 env:
   IMAGE_NAME: "consul"
@@ -26,7 +26,6 @@ jobs:
         with:
           context: ${{ env.IMAGE_NAME }}
           image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: latest ${{ github.GITHUB_SHA }}
           containerfiles: ${{ env.IMAGE_NAME }}/Containerfile
           layers: false
           oci: true

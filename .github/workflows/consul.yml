@@ -31,7 +31,7 @@ jobs:
         with:
           context: ${{ env.IMAGE_NAME }}
           image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: latest ${{ github.GITHUB_SHA }}
+          tags: latest ${{ env.GITHUB_SHA }}
           containerfiles: ${{ env.IMAGE_NAME }}/Containerfile
           layers: false
           oci: true
@@ -43,4 +43,4 @@ jobs:
           password: ${{ secrets.BOT_SECRET }}
           image: ${{ env.IMAGE_NAME }}
           registry: ${{ env.REGISTRY }}
-          tags: latest ${{ github.GITHUB_SHA }}
+          tags: latest ${{ env.GITHUB_SHA }}
