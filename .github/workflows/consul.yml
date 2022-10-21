@@ -1,0 +1,46 @@
+name: "Build Consul image"
+
+permissions: read-all
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - consul/*
+      - .github/workflows/consul.yaml
+  schedule:
+    - cron:  '0 0 * * MON'
+
+# Prevent multiple workflow runs from racing
+concurrency: ${{ github.workflow }}
+
+env:
+  IMAGE_NAME: "consul"
+  REGISTRY: "quay.io/travier"
+
+jobs:
+  build-push-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Build container image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          context: ${{ env.IMAGE_NAME }}
+          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: latest ${{ github.GITHUB_SHA }}
+          containerfiles: ${{ env.IMAGE_NAME }}/Containerfile
+          layers: false
+          oci: true
+
+      - name: Push to Quay.io
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          username: ${{ secrets.BOT_USERNAME }}
+          password: ${{ secrets.BOT_SECRET }}
+          image: ${{ env.IMAGE_NAME }}
+          registry: ${{ env.REGISTRY }}
+          tags: latest ${{ github.GITHUB_SHA }}
