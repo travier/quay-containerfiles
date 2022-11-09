@@ -26,6 +26,13 @@ jobs:
           set -euxo pipefail
           gpg --import ci/hashicorp.pubkey
 
+      - name: Setup Git config
+        shell: bash
+        run: |
+          set -euxo pipefail
+          git config user.name "${GIT_USERNAME}"
+          git config user.email "${GIT_EMAIL}"
+
       - name: Check for updates
         run: ci/update_hashicorp.sh
 
