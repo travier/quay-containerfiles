@@ -6,6 +6,10 @@ on:
     - cron:  '0 0 * * MON'
   workflow_dispatch:
 
+env:
+  GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+  GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+
 permissions: read-all
 
 # Unlikely but should only trigger once at a time
