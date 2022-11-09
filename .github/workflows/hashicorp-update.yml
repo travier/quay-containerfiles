@@ -31,12 +31,13 @@ jobs:
           set -euxo pipefail
           gpg --import ci/hashicorp.pubkey
 
-      - name: Setup Git config
+      - name: Setup Git config & branch
         shell: bash
         run: |
           set -euxo pipefail
           git config user.name "${GIT_USERNAME}"
           git config user.email "${GIT_EMAIL}"
+          git checkout -b hashicorp-update
 
       - name: Check for updates
         run: ci/update_hashicorp.sh
@@ -49,4 +50,4 @@ jobs:
           if [[ "${current_commit}" == "${GITHUB_SHA}" ]]; then
             return 0
           fi
-          gh pr create -B main -H hashicorp-update --title 'Update Hashicorp container images' --body 'Created by Github action'
+          gh pr create --base main --title 'Update Hashicorp container images' --body 'Created by Github action'
