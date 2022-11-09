@@ -11,6 +11,8 @@ env:
   GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+permissions: write-all
+
 # Unlikely but should only trigger once at a time
 concurrency:
   group: ${{ github.workflow }}
