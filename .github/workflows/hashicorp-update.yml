@@ -1,0 +1,34 @@
+name: "Check for updates for images for Hashicorp projects"
+
+# Run weekly or on demand
+on:
+  schedule:
+    - cron:  '0 0 * * MON'
+  workflow_dispatch
+
+permissions: read-all
+
+# Unlikely but should only trigger once at a time
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Check for updates
+        run: ci/update_hashicorp.sh
+
+      - name: Create a PR if changes have been made
+        shell: bash
+        run: |
+          set -euxo pipefail
+          current_commit="$(git rev-parse HEAD)"
+          if [[ "${current_commit}" == "${GITHUB_SHA}" ]]; then
+            return 0
+          fi
+          gh pr create -B main -H hashicorp-update --title 'Update Hashicorp container images' --body 'Created by Github action'
