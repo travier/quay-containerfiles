@@ -50,4 +50,4 @@ jobs:
           if [[ "${current_commit}" == "${GITHUB_SHA}" ]]; then
             return 0
           fi
-          gh pr create --base main --title 'Update Hashicorp container images' --body 'Created by Github action'
+          gh pr create --base main --head hashicorp-update --title 'Update Hashicorp container images' --body 'Created by Github action'
