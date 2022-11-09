@@ -20,6 +20,12 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: Import Hashicorp public OpenPGP key
+        shell: bash
+        run: |
+          set -euxo pipefail
+          gpg --import ci/hashicorp.pubkey
+
       - name: Check for updates
         run: ci/update_hashicorp.sh
 
