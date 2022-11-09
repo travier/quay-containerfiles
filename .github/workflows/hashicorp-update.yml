@@ -9,6 +9,7 @@ on:
 env:
   GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
   GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 permissions: read-all
 
