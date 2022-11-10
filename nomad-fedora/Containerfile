@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:36 as unzip
+FROM registry.fedoraproject.org/fedora:37 as unzip
 
 RUN dnf -y install unzip && \
     dnf clean all
@@ -12,7 +12,7 @@ RUN curl -O "https://releases.hashicorp.com/${NAME}/${VERSION}/${NAME}_${VERSION
 RUN echo "${SHA256}" | sha256sum --check
 RUN unzip "${NAME}_${VERSION}_linux_amd64.zip"
 
-FROM registry.fedoraproject.org/fedora:36
+FROM registry.fedoraproject.org/fedora:37
 
 # Keep container image for ~2 months
 LABEL quay.expires-after=8w

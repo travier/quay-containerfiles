@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:36 as unzip
+FROM registry.fedoraproject.org/fedora:37 as unzip
 
 # From https://developer.hashicorp.com/vault/downloads
 ENV NAME="vault"
