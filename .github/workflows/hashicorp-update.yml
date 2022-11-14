@@ -48,7 +48,7 @@ jobs:
           set -euxo pipefail
           current_commit="$(git rev-parse HEAD)"
           if [[ "${current_commit}" == "${GITHUB_SHA}" ]]; then
-            return 0
+            exit 0
           fi
           git push --force origin HEAD:refs/heads/hashicorp-update
           gh pr create --base main --head hashicorp-update --title 'Update Hashicorp container images' --body 'Created by Github action'
