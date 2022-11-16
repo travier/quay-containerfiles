@@ -29,6 +29,7 @@ RUN dnf -y distrosync && \
       gcc \
       go \
       graphviz \
+      inotify-tools \
       jq \
       json-glib-devel \
       make \
