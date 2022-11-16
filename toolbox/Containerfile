@@ -34,7 +34,6 @@ RUN dnf -y distrosync && \
       json-glib-devel \
       make \
       meson \
-      qrencode \
       minisign \
       mkpasswd \
       npm \
@@ -44,6 +43,7 @@ RUN dnf -y distrosync && \
       pylint \
       python3-dateparser \
       python3-rust2rpm \
+      qrencode \
       ripgrep \
       ruby \
       ruby-devel \
