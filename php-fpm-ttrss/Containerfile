@@ -42,7 +42,7 @@ RUN dnf -y update && \
         /etc/php.d/40-apcu.ini \
         /etc/php.d/40-zip.ini \
         && \
-    dnf clean all # nocache 2022-10-13
+    dnf clean all
 
 USER apache
 CMD ["/usr/sbin/php-fpm"]

@@ -7,5 +7,4 @@ RUN dnf -y update && \
     dnf -y install \
       vagrant \
       vagrant-libvirt \
-    && \
-    dnf clean all # nocache 2022-10-13
+    && dnf clean all
