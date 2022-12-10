@@ -44,5 +44,8 @@ RUN dnf -y update && \
         && \
     dnf clean all
 
+# Disable safe directory check in Git
+RUN echo -e "[safe]\n  directory = *" > /usr/share/httpd/.gitconfig
+
 USER apache
 CMD ["/usr/sbin/php-fpm"]
