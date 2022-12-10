@@ -1,0 +1,11 @@
+FROM registry.fedoraproject.org/fedora:37
+
+# Keep container image for ~2 months
+LABEL quay.expires-after=8w
+
+RUN dnf -y update && \
+    dnf -y install quassel-core && \
+    dnf clean all
+
+USER quassel
+CMD ["/usr/bin/quasselcore"]
