@@ -51,4 +51,5 @@ jobs:
             exit 0
           fi
           git push --force origin HEAD:refs/heads/hashicorp-update
-          gh pr create --base main --head hashicorp-update --title 'Update Hashicorp container images' --body 'Created by Github action'
+          # Allow this to fail if the PR already exists
+          gh pr create --base main --head hashicorp-update --title 'Update Hashicorp container images' --body 'Created by Github action' || true
