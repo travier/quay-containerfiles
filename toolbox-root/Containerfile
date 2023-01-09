@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora-toolbox:37
+FROM registry.fedoraproject.org/fedora:37
 
 # Keep container image for ~2 months
 LABEL quay.expires-after=8w
@@ -7,21 +7,13 @@ LABEL quay.expires-after=8w
 # - Ensure that mlocate is removed
 RUN dnf -y distrosync && \
     dnf -y install \
-      ShellCheck \
       bwm-ng \
-      fd-find \
       htop \
       iotop \
-      jq \
-      mkpasswd \
-      pwgen \
-      ripgrep \
-      shfmt \
       sqlite \
       tree \
       vim \
       wireguard-tools \
-      zoxide \
       zsh \
       && \
     dnf -y remove mlocate && \
