@@ -33,8 +33,8 @@ RUN dnf -y distrosync && \
       hugo \
       inotify-tools \
       jq \
-      just \
       json-glib-devel \
+      just \
       make \
       meson \
       minisign \
