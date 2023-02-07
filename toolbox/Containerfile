@@ -27,8 +27,10 @@ RUN dnf -y distrosync && \
       fzf \
       g++ \
       gcc \
+      gettext \
       go \
       graphviz \
+      hugo \
       inotify-tools \
       jq \
       just \
@@ -43,6 +45,7 @@ RUN dnf -y distrosync && \
       pwgen \
       pylint \
       python3-dateparser \
+      python3-pip \
       python3-rust2rpm \
       qrencode \
       ripgrep \
