@@ -16,6 +16,7 @@ RUN dnf -y distrosync && \
       centos-packager \
       centpkg \
       copr-cli \
+      coreos-installer \
       createrepo_c \
       dejavu-sans-fonts \
       dejavu-sans-mono-fonts \
@@ -31,6 +32,7 @@ RUN dnf -y distrosync && \
       go \
       graphviz \
       hugo \
+      ignition-validate \
       inotify-tools \
       jq \
       json-glib-devel \
