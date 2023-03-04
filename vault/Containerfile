@@ -2,8 +2,8 @@ FROM registry.fedoraproject.org/fedora:37 as unzip
 
 # From https://developer.hashicorp.com/vault/downloads
 ENV NAME="vault"
-ENV VERSION="1.12.3"
-ENV SHA256="f4825bad06e77687b407eff7423acb9238adfd545d7345f2a0bb9e81b0c4b1eb  vault_1.12.3_linux_amd64.zip"
+ENV VERSION="1.13.0"
+ENV SHA256="69c1ce6dd383bb342c4f861a51a91413eb05e1324159e4395532e42a8a59af9d  vault_1.13.0_linux_amd64.zip"
 
 RUN dnf -y install unzip && \
     dnf clean all
