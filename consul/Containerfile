@@ -2,8 +2,8 @@ FROM registry.fedoraproject.org/fedora:37 as unzip
 
 # From https://developer.hashicorp.com/consul/downloads
 ENV NAME="consul"
-ENV VERSION="1.15.0"
-ENV SHA256="62a358ff2c3c08d19f15a92ea3130b05b547ab5a767ae13454eab7655a718c24  consul_1.15.0_linux_amd64.zip"
+ENV VERSION="1.15.1"
+ENV SHA256="23f7eb0461dd01a95c5d56472b91c22d5dacec84f31f1846c0c9f9621f98f29f  consul_1.15.1_linux_amd64.zip"
 
 RUN dnf -y install unzip && \
     dnf clean all
