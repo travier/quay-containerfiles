@@ -4,18 +4,18 @@ RUN dnf -y install unzip && \
     dnf clean all
 
 # From https://developer.hashicorp.com/nomad/downloads
-ENV NAME="nomad"
-ENV VERSION="1.5.2"
-ENV SHA256="51d0ecf23f4740d078287eaef2f4da9f3420b087907d33480ef2ec49628d6461  nomad_1.5.2_linux_amd64.zip"
+ARG NAME="nomad"
+ARG VERSION="1.5.2"
+ARG SHA256="51d0ecf23f4740d078287eaef2f4da9f3420b087907d33480ef2ec49628d6461  nomad_1.5.2_linux_amd64.zip"
 
 RUN curl -O "https://releases.hashicorp.com/${NAME}/${VERSION}/${NAME}_${VERSION}_linux_amd64.zip"
 RUN echo "${SHA256}" | sha256sum --check
 RUN unzip "${NAME}_${VERSION}_linux_amd64.zip"
 
 # From https://github.com/hashicorp/nomad-driver-podman/releases
-ENV NAME="nomad-driver-podman"
-ENV VERSION="0.4.1"
-ENV SHA256="64d78edef0ac89980508749383ff5901840f28a537f4c7ec41fae6f596f13f0e  nomad-driver-podman_0.4.1_linux_amd64.zip"
+ARG NAME="nomad-driver-podman"
+ARG VERSION="0.4.1"
+ARG SHA256="64d78edef0ac89980508749383ff5901840f28a537f4c7ec41fae6f596f13f0e  nomad-driver-podman_0.4.1_linux_amd64.zip"
 
 RUN curl -O "https://releases.hashicorp.com/${NAME}/${VERSION}/${NAME}_${VERSION}_linux_amd64.zip"
 RUN echo "${SHA256}" | sha256sum --check

@@ -4,9 +4,9 @@ RUN dnf -y install unzip && \
     dnf clean all
 
 # From https://github.com/hashicorp/nomad-driver-podman/releases
-ENV NAME="nomad-driver-podman"
-ENV VERSION="0.4.1"
-ENV SHA256="64d78edef0ac89980508749383ff5901840f28a537f4c7ec41fae6f596f13f0e  nomad-driver-podman_0.4.1_linux_amd64.zip"
+ARG NAME="nomad-driver-podman"
+ARG VERSION="0.4.1"
+ARG SHA256="64d78edef0ac89980508749383ff5901840f28a537f4c7ec41fae6f596f13f0e  nomad-driver-podman_0.4.1_linux_amd64.zip"
 
 RUN curl -O "https://releases.hashicorp.com/${NAME}/${VERSION}/${NAME}_${VERSION}_linux_amd64.zip"
 RUN echo "${SHA256}" | sha256sum --check
