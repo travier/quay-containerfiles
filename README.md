@@ -19,12 +19,7 @@ namespace.
 
 ## Hashicorp projects
 
-| Quay.io repository | Description |
-|-|-|
-| [nomad](https://quay.io/repository/travier/nomad) | [Nomad](https://www.nomadproject.io/) with [podman driver](https://github.com/hashicorp/nomad-driver-podman) (binaries only) |
-| [nomad-fedora](https://quay.io/repository/travier/nomad-fedora) | [Nomad](https://www.nomadproject.io/) with [podman driver](https://github.com/hashicorp/nomad-driver-podman), based on Fedora's container image (binaries and dependencies) |
-| [consul](https://quay.io/repository/travier/consul) | [consult](https://www.consul.io/) (binary only) |
-| [vault](https://quay.io/repository/travier/vault) | [vault](https://www.vaultproject.io/) (binary only) |
+Moved to [github.com/travier/hashicorp-container-images](https://github.com/travier/hashicorp-container-images).
 
 ## Toolbox containers
 
