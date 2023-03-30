@@ -17,10 +17,6 @@ namespace.
 | [unbound](https://quay.io/repository/travier/unbound) | [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/) |
 | [nginx](https://quay.io/repository/travier/nginx) | [nginx](https://nginx.org/) |
 
-## Hashicorp projects
-
-Moved to [github.com/travier/hashicorp-container-images](https://github.com/travier/hashicorp-container-images).
-
 ## Toolbox containers
 
 | Quay.io repository | Description |
@@ -28,6 +24,10 @@ Moved to [github.com/travier/hashicorp-container-images](https://github.com/trav
 | [toolbox](https://quay.io/repository/travier/toolbox) | Personal toolbox container image based on the Fedora toolbox image for general use cases |
 | [toolbox-kdedev](https://quay.io/repository/travier/toolbox-kdedev) | Toolbox container image based on the Fedora toolbox image for KDE development |
 | [toolbox-texlive](https://quay.io/repository/travier/toolbox-texlive) | Toolbox container image based on Fedora for LaTeX based projects |
+
+## Hashicorp projects
+
+Moved to [github.com/travier/hashicorp-container-images](https://github.com/travier/hashicorp-container-images).
 
 ## License
 
