@@ -9,6 +9,7 @@ RUN dnf -y distrosync && \
     dnf -y install \
       bwm-ng \
       htop \
+      igt-gpu-tools \
       iotop \
       sqlite \
       wireguard-tools \
