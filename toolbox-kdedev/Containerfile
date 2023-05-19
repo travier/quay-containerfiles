@@ -109,7 +109,6 @@ RUN dnf -y distrosync && \
       gdb \
       git-clang-format \
       kdevelop \
-      qgit \
       rpm-ostree-devel \
       strace \
       && \
