@@ -91,6 +91,15 @@ RUN dnf -y distrosync && \
       qt5-qttools-static \
       qt5-qtwayland-devel \
       qt5-qtwebkit-devel \
+      qt6-qtbase-private-devel \
+      qt6-qtbase-static \
+      qt6-qtquickcontrols2-devel \
+      qt6-qtscript-devel \
+      qt6-qtsensors-devel \
+      qt6-qttools-devel \
+      qt6-qttools-static \
+      qt6-qtwayland-devel \
+      qt6-qtwebkit-devel \
       sassc \
       wayland-devel \
       wayland-protocols-devel \
@@ -117,6 +126,8 @@ RUN dnf -y distrosync && \
       kf5-purpose-devel \
       qt5-qtwebview-devel \
       qt5-qtbase \
+      qt6-qtwebview-devel \
+      qt6-qtbase \
       ; \
     dnf -y remove mlocate && \
     dnf clean all
