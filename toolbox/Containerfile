@@ -58,6 +58,7 @@ RUN dnf -y distrosync && \
       source-foundry-hack-fonts \
       sqlite \
       vim \
+      yamllint \
       yt-dlp \
       zoxide \
       zsh \
