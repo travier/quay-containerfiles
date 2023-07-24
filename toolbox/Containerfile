@@ -69,6 +69,9 @@ RUN dnf -y distrosync && \
       perl-IPC-Cmd \
       perl-File-Compare && \
     dnf -y remove mlocate && \
+    dnf -y install dnf-plugins-core && \
+    dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo && \
+    dnf -y install terraform nomad && \
     dnf clean all
 
 # No need to clear the output as we will never use ZSH as a login shell and
