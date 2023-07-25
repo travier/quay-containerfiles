@@ -9,7 +9,7 @@ LABEL quay.expires-after=8w
 # - Install build deps for Discover development. This will ignore errors
 #   encountered during flatpak installation.
 # - Remove mlocate
-RUN dnf -y distrosync && \
+RUN dnf -y update && \
     dnf -y install \
       ShellCheck \
       fd-find \
@@ -21,6 +21,7 @@ RUN dnf -y distrosync && \
       just \
       meson \
       ripgrep \
+      sqlite \
       vim \
       zoxide \
       zsh \
