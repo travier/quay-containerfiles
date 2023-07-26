@@ -1,0 +1,18 @@
+FROM registry.fedoraproject.org/fedora:38
+
+# Keep container image for ~2 months
+LABEL quay.expires-after=8w
+
+RUN dnf -y update && \
+    dnf -y install \
+      libvirt-daemon \
+      libvirt-daemon-config-network \
+      libvirt-daemon-driver-interface \
+      libvirt-daemon-driver-network \
+      libvirt-daemon-driver-nwfilter \
+      libvirt-daemon-driver-qemu \
+      libvirt-daemon-driver-secret \
+      libvirt-daemon-driver-storage-core \
+      qemu-kvm \
+      virt-install \
+    && dnf clean all
