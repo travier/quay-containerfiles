@@ -16,3 +16,23 @@ RUN dnf -y update && \
       qemu-kvm \
       virt-install \
     && dnf clean all
+
+RUN systemctl disable \
+    console-getty.service \
+    dracut-shutdown.service \
+    getty@tty1.service \
+    gssproxy.service \
+    rpc-statd-notify.service \
+    rtkit-daemon.service \
+    selinux-autorelabel-mark.service \
+    systemd-homed-activate.service \
+    systemd-homed.service \
+    systemd-network-generator.service \
+    systemd-oomd.service \
+    systemd-remount-fs.service \
+    systemd-sysctl.service \
+    upower.service
+
+RUN systemctl enable libvirtd.service
+
+ENTRYPOINT ["/sbin/init"]
