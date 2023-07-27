@@ -1,13 +1,13 @@
 # Containerfiles for various personal projects
 
-Those containers are built using GitHub Actions and hosted on Quay.io and most
-of them are Fedora based. Some might require volume mounts or manual
-configuration.
+Those containers are based on the Fedora container image, built using GitHub
+Actions and hosted on Quay.io.
 
-Each `Containerfile` is in a specific folder in this repo.
+Some might require volume mounts or manual configuration. See the individual
+READMEs for more information.
 
-All repositories are under the [travier](https://quay.io/user/travier)
-namespace.
+Each `Containerfile` is in a specific folder in this repo. All repositories are
+under the [travier](https://quay.io/user/travier) namespace.
 
 ## Service containers
 
@@ -16,14 +16,20 @@ namespace.
 | [php-fpm-ttrss](https://quay.io/repository/travier/php-fpm-ttrss) | [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) and modules for [Tiny Tiny RSS](https://tt-rss.org/) |
 | [unbound](https://quay.io/repository/travier/unbound) | [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/) |
 | [nginx](https://quay.io/repository/travier/nginx) | [nginx](https://nginx.org/) |
+| [quasselcore](https://quay.io/repository/travier/quasselcore) | [Quassel IRC](https://quassel-irc.org/) |
+| [libvirtd](https://quay.io/repository/travier/libvirtd) | [libvirt](https://libvirt.org/) |
 
-## Toolbox containers
+## Toolbox containers and tools
+
+The toolbox container images are based on the Fedora toolbox container image.
 
 | Quay.io repository | Description |
 |-|-|
-| [toolbox](https://quay.io/repository/travier/toolbox) | Personal toolbox container image based on the Fedora toolbox image for general use cases |
-| [toolbox-kdedev](https://quay.io/repository/travier/toolbox-kdedev) | Toolbox container image based on the Fedora toolbox image for KDE development |
-| [toolbox-texlive](https://quay.io/repository/travier/toolbox-texlive) | Toolbox container image based on Fedora for LaTeX based projects |
+| [toolbox](https://quay.io/repository/travier/toolbox) | Personal toolbox for general use cases |
+| [toolbox-kdedev](https://quay.io/repository/travier/toolbox-kdedev) | Tools and dependencies needed for KDE development |
+| [toolbox-root](https://quay.io/repository/travier/toolbox-root) | Tools useful for system administration |
+| [toolbox-texlive](https://quay.io/repository/travier/toolbox-texlive) | Tools and binaries to build LaTeX based projects |
+| [vagrant](https://quay.io/repository/travier/toolbox) | [Vagrant](https://www.vagrantup.com/) with libvirt support |
 
 ## Hashicorp projects
 
