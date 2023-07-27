@@ -27,10 +27,30 @@ RUN systemctl disable \
     selinux-autorelabel-mark.service \
     systemd-homed-activate.service \
     systemd-homed.service \
+    systemd-hwdb-update.service \
     systemd-network-generator.service \
     systemd-oomd.service \
     systemd-remount-fs.service \
     systemd-sysctl.service \
+    systemd-udevd.service \
+    upower.service
+
+RUN systemctl mask \
+    console-getty.service \
+    dracut-shutdown.service \
+    getty@tty1.service \
+    gssproxy.service \
+    rpc-statd-notify.service \
+    rtkit-daemon.service \
+    selinux-autorelabel-mark.service \
+    systemd-homed-activate.service \
+    systemd-homed.service \
+    systemd-hwdb-update.service \
+    systemd-network-generator.service \
+    systemd-oomd.service \
+    systemd-remount-fs.service \
+    systemd-sysctl.service \
+    systemd-udevd.service \
     upower.service
 
 RUN systemctl enable libvirtd.service
