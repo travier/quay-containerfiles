@@ -17,7 +17,7 @@ under the [travier](https://quay.io/user/travier) namespace.
 | [unbound](https://quay.io/repository/travier/unbound) | [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/) |
 | [nginx](https://quay.io/repository/travier/nginx) | [nginx](https://nginx.org/) |
 | [quasselcore](https://quay.io/repository/travier/quasselcore) | [Quassel IRC](https://quassel-irc.org/) |
-| [libvirtd](https://quay.io/repository/travier/libvirtd) | [libvirt](https://libvirt.org/) |
+| [libvirtd](https://quay.io/repository/travier/libvirtd) | [libvirt](https://libvirt.org/) daemon to run on rpm-ostree based systems |
 
 ## Toolbox containers and tools
 
@@ -29,7 +29,7 @@ The toolbox container images are based on the Fedora toolbox container image.
 | [toolbox-kdedev](https://quay.io/repository/travier/toolbox-kdedev) | Tools and dependencies needed for KDE development |
 | [toolbox-root](https://quay.io/repository/travier/toolbox-root) | Tools useful for system administration |
 | [toolbox-texlive](https://quay.io/repository/travier/toolbox-texlive) | Tools and binaries to build LaTeX based projects |
-| [vagrant](https://quay.io/repository/travier/toolbox) | [Vagrant](https://www.vagrantup.com/) with libvirt support |
+| [vagrant](https://quay.io/repository/travier/vagrant) | [Vagrant](https://www.vagrantup.com/) with libvirt support |
 
 ## Hashicorp projects
 
