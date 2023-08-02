@@ -24,7 +24,6 @@ RUN systemctl disable \
     gssproxy.service \
     rpc-statd-notify.service \
     rtkit-daemon.service \
-    selinux-autorelabel-mark.service \
     systemd-homed-activate.service \
     systemd-homed.service \
     systemd-hwdb-update.service \
