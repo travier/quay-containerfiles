@@ -12,6 +12,7 @@ RUN dnf -y distrosync && \
       ShellCheck \
       awscli \
       brotli \
+      bind-utils \
       butane \
       centos-packager \
       centpkg \
@@ -34,6 +35,7 @@ RUN dnf -y distrosync && \
       hugo \
       ignition-validate \
       inotify-tools \
+      intltool \
       jq \
       json-glib-devel \
       just \
