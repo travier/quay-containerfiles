@@ -30,6 +30,8 @@ RUN dnf -y distrosync && \
       g++ \
       gcc \
       gettext \
+      git-absorb \
+      git-delta \
       go \
       graphviz \
       hugo \
