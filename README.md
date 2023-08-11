@@ -29,7 +29,6 @@ The toolbox container images are based on the Fedora toolbox container image.
 | [toolbox-kdedev](https://quay.io/repository/travier/toolbox-kdedev) | Tools and dependencies needed for KDE development |
 | [toolbox-root](https://quay.io/repository/travier/toolbox-root) | Tools useful for system administration |
 | [toolbox-texlive](https://quay.io/repository/travier/toolbox-texlive) | Tools and binaries to build LaTeX based projects |
-| [vagrant](https://quay.io/repository/travier/vagrant) | [Vagrant](https://www.vagrantup.com/) with libvirt support |
 
 ## Hashicorp projects
 
