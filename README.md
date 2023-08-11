@@ -30,10 +30,6 @@ The toolbox container images are based on the Fedora toolbox container image.
 | [toolbox-root](https://quay.io/repository/travier/toolbox-root) | Tools useful for system administration |
 | [toolbox-texlive](https://quay.io/repository/travier/toolbox-texlive) | Tools and binaries to build LaTeX based projects |
 
-## Hashicorp projects
-
-Moved to [github.com/travier/hashicorp-container-images](https://github.com/travier/hashicorp-container-images).
-
 ## License
 
 See [LICENSE](LICENSE).
