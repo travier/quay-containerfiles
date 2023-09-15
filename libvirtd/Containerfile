@@ -4,7 +4,7 @@ FROM registry.fedoraproject.org/fedora:38
 LABEL quay.expires-after=8w
 
 RUN dnf -y update && \
-    dnf -y install \
+    dnf -y install --nodocs \
       libvirt-daemon \
       libvirt-daemon-config-network \
       libvirt-daemon-driver-interface \
@@ -13,49 +13,27 @@ RUN dnf -y update && \
       libvirt-daemon-driver-qemu \
       libvirt-daemon-driver-secret \
       libvirt-daemon-driver-storage-core \
+      libvirt-dbus \
+      netcat \
+      openssh-server \
+      procps-ng \
       qemu-kvm \
       virt-install \
     && dnf clean all
 
-RUN systemctl disable \
-    console-getty.service \
-    dracut-shutdown.service \
-    getty@tty1.service \
-    gssproxy.service \
-    rpc-statd-notify.service \
-    rtkit-daemon.service \
-    systemd-homed-activate.service \
-    systemd-homed.service \
-    systemd-hwdb-update.service \
-    systemd-network-generator.service \
-    systemd-oomd.service \
-    systemd-remount-fs.service \
-    systemd-resolved.service \
-    systemd-sysctl.service \
-    systemd-udev-trigger.service \
-    systemd-udevd.service \
-    upower.service
+RUN rm -rfv \
+    /etc/systemd/system/*.wants/ \
+    /etc/systemd/user/*.wants/ \
+    /usr/lib/systemd/system/*.wants/ \
+    /usr/lib/systemd/user/*.wants/
 
-RUN systemctl mask \
-    console-getty.service \
-    dracut-shutdown.service \
-    getty@tty1.service \
-    gssproxy.service \
-    rpc-statd-notify.service \
-    rtkit-daemon.service \
-    selinux-autorelabel-mark.service \
-    systemd-homed-activate.service \
-    systemd-homed.service \
-    systemd-hwdb-update.service \
-    systemd-network-generator.service \
-    systemd-oomd.service \
-    systemd-remount-fs.service \
-    systemd-resolved.service \
-    systemd-sysctl.service \
-    systemd-udev-trigger.service \
-    systemd-udevd.service \
-    upower.service
+RUN systemctl enable \
+    dbus-broker.service \
+    libvirtd.service \
+    sshd.service \
+    systemd-journald.service \
+    systemd-tmpfiles-setup.service
 
-RUN systemctl enable libvirtd.service
+RUN echo "Port 2222" > /etc/ssh/sshd_config.d/10-local.conf
 
 ENTRYPOINT ["/sbin/init"]

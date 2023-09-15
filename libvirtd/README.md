@@ -5,15 +5,55 @@ See also: https://discussion.fedoraproject.org/t/overlaying-libvirt-on-silverblu
 
 ## Running manually
 
-Start the container with:
+Start the container as root with:
 
 ```
-$ sudo podman run --rm -ti --systemd=true --privileged --net host quay.io/travier/libvirtd
+# podman run -d \
+  --systemd=true \
+  --privileged \
+  --rm \
+  --net host \
+  --hostname libvirt \
+  --name libvirtd \
+  -v /dev/kvm:/dev/kvm \
+  -v /var/lib/libvirt:/var/lib/libvirt \
+  -v libvirtd_etc:/etc/libvirt \
+  -v /var/roothome/.ssh/authorized_keys:/root/.ssh/authorized_keys \
+  quay.io/travier/libvirtd
 ```
 
-For a yet unknown reason, this will not start the libvirtd daemon.
+If you don't store all your images in the default location in
+`/var/lib/livbirt/images`, then you can pass additional mounts:
 
-Access via OpenSSH is not yet supported.
+```
+  -v </path/to/where/you/store/your/images>:</foo/bar/> \
+```
+
+You can then setup your ssh config:
+
+```
+Host libvirtd.local
+    Hostname localhost
+    User root
+    Port 2222
+    IdentityFile ~/.ssh/keys/localroot
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+```
+
+to use with the remote connection in virt-manager.
+
+## Current issues
+
+- The libvirtd daemon won't start directly, only on the first connection.
+- The dbus-broker and systemd-journald service don't start directly in the
+  container.
+- DHCP does not work for virtual networks.
+- Passing the full `/dev` to the container (to share USB devices for examples)
+  results in the following error on VM start:
+  ```
+  QEMU Driver error : failed to umount devfs on /dev: Device or resource busy
+  ```
 
 ## Running with Quadlet
 
