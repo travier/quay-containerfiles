@@ -1,7 +1,17 @@
+FROM registry.fedoraproject.org/fedora:38 AS builder
+
+RUN dnf update -y && \
+    dnf install -y rust cargo && \
+    cargo install bandwhich
+RUN mv /root/.cargo/bin/bandwhich /
+
 FROM registry.fedoraproject.org/fedora-toolbox:38
 
 # Keep container image for ~2 months
 LABEL quay.expires-after=8w
+
+# Copy bandwhich from builder container
+COPY --from=builder /bandwhich /usr/local/bin/bandwhich
 
 # - Only install tools that need root access
 # - Ensure that mlocate is removed
