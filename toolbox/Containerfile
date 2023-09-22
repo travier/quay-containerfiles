@@ -77,6 +77,24 @@ RUN dnf -y distrosync && \
     dnf -y install dnf-plugins-core && \
     dnf clean all
 
+# Setup host-runner script and symlinks
+COPY host-runner /usr/local/bin/host-runner
+RUN bins=( \
+    "firefox" \
+    "flatpak" \
+    "google-chrome" \
+    "htop" \
+    "podman" \
+    "rpm-ostree" \
+    "systemctl" \
+    "virsh" \
+    "virt-install" \
+    "xdg-open" \
+    ) \
+    for f in "${bins[@]}"; do \
+        ln -s host-runner /usr/local/bin/$f \
+    done \
+
 # No need to clear the output as we will never use ZSH as a login shell and
 # this clears output when exiting toolboxes.
 RUN sed -i '/clear/d' /etc/zlogout
