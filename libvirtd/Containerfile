@@ -34,6 +34,6 @@ RUN systemctl enable \
     systemd-journald.service \
     systemd-tmpfiles-setup.service
 
-RUN echo "Port 2222" > /etc/ssh/sshd_config.d/10-local.conf
+RUN echo -e "ListenAddress 127.0.0.1\nPort 2222" > /etc/ssh/sshd_config.d/10-local.conf
 
 ENTRYPOINT ["/sbin/init"]
