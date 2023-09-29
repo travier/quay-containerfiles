@@ -8,4 +8,4 @@ RUN dnf -y update && \
     dnf clean all
 
 USER nginx
-CMD ["/usr/sbin/nginx"]
+CMD ["/usr/sbin/nginx", "-g", "daemon off;error_log /dev/stdout info;"]
