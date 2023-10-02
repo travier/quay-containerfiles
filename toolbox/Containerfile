@@ -93,7 +93,7 @@ RUN bins=( \
     ); \
     for f in "${bins[@]}"; do \
         ln -s host-runner /usr/local/bin/$f;\
-    done \
+    done
 
 # No need to clear the output as we will never use ZSH as a login shell and
 # this clears output when exiting toolboxes.
