@@ -1,0 +1,10 @@
+FROM docker.io/filebrowser/filebrowser:latest
+
+# Keep container image for ~6 months
+LABEL quay.expires-after=24w
+
+# Run unprivileged
+USER 2000:2000
+
+# Disable healthchecks
+HEALTHCHECK NONE
