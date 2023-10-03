@@ -1,7 +1,7 @@
 FROM registry.fedoraproject.org/fedora:38
 
-# Keep container image for ~2 months
-LABEL quay.expires-after=8w
+# Keep container image for ~3 months
+LABEL quay.expires-after=12w
 
 RUN dnf -y update && \
     dnf -y install git php-cli php-fpm \

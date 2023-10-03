@@ -1,7 +1,7 @@
 FROM registry.fedoraproject.org/fedora-toolbox:38
 
-# Keep container image for ~2 months
-LABEL quay.expires-after=8w
+# Keep container image for ~3 months
+LABEL quay.expires-after=12w
 
 # - Install common development tools
 # - Install all build deps for kdesrc-build (plasma only, no apps)

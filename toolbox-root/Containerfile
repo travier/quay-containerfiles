@@ -7,8 +7,8 @@ RUN mv /root/.cargo/bin/bandwhich /
 
 FROM registry.fedoraproject.org/fedora-toolbox:38
 
-# Keep container image for ~2 months
-LABEL quay.expires-after=8w
+# Keep container image for ~3 months
+LABEL quay.expires-after=12w
 
 # Copy bandwhich from builder container
 COPY --from=builder /bandwhich /usr/local/bin/bandwhich
