@@ -3,6 +3,7 @@ FROM registry.fedoraproject.org/fedora:38
 # Keep container image for ~3 months
 LABEL quay.expires-after=12w
 
+# Install php and required modules, remove unneeded packages and remove all SUID/SGID binaries
 RUN dnf -y update && \
     dnf -y install git php-cli php-fpm \
         /etc/php.d/20-bz2.ini \
@@ -42,7 +43,14 @@ RUN dnf -y update && \
         /etc/php.d/40-apcu.ini \
         /etc/php.d/40-zip.ini \
         && \
-    dnf clean all
+    rm /etc/dnf/protected.d/sudo.conf && \
+    dnf -y remove \
+        pam \
+        shadow-utils \
+        sudo \
+    && \
+    dnf clean all && \
+    find /usr \( -perm -4000 -o -perm -2000 \) -exec rm -fv {} \;
 
 # Disable safe directory check in Git
 RUN echo -e "[safe]\n  directory = *" > /usr/share/httpd/.gitconfig
