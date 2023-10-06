@@ -40,7 +40,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           context: ${{ env.IMAGE_NAME }}
-          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          image: ${{ env.IMAGE_NAME }}
           tags: latest ${{ github.sha }}
           containerfiles: ${{ env.IMAGE_NAME }}/Containerfile
           layers: false
