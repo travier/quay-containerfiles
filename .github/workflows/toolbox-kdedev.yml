@@ -33,7 +33,7 @@ jobs:
   build-push-image:
     runs-on: ubuntu-latest
     steps:
-      - reclaim-disk-space:
+      - name: Reclaim disk space
         run: |
           sudo docker image prune --all --force
           sudo rm -rf "/usr/local/lib/android"
