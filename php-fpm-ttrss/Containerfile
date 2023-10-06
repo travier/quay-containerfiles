@@ -5,7 +5,7 @@ LABEL quay.expires-after=12w
 
 # Install php and required modules, remove unneeded packages and remove all SUID/SGID binaries
 RUN rm /etc/dnf/protected.d/sudo.conf && \
-    dnf -y remove pam shadow-utils sudo && \
+    dnf -y remove pam sudo && \
     dnf -y update && \
     dnf -y install git php-cli php-fpm \
         /etc/php.d/20-bz2.ini \
@@ -45,6 +45,7 @@ RUN rm /etc/dnf/protected.d/sudo.conf && \
         /etc/php.d/40-apcu.ini \
         /etc/php.d/40-zip.ini \
         && \
+    dnf -y remove shadow-utils && \
     dnf clean all && \
     find /usr \( -perm -4000 -o -perm -2000 \) -exec rm -fv {} \;
 

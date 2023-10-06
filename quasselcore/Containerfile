@@ -5,9 +5,10 @@ LABEL quay.expires-after=12w
 
 # Install quasselcore, remove unneeded packages and remove all SUID/SGID binaries
 RUN rm /etc/dnf/protected.d/sudo.conf && \
-    dnf -y remove pam shadow-utils sudo && \
+    dnf -y remove pam sudo && \
     dnf -y update && \
     dnf -y install quassel-core && \
+    dnf -y remove shadow-utils && \
     dnf clean all && \
     find /usr \( -perm -4000 -o -perm -2000 \) -exec rm -fv {} \;
 
