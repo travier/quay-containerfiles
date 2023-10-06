@@ -52,6 +52,6 @@ jobs:
         with:
           username: ${{ secrets.BOT_USERNAME }}
           password: ${{ secrets.BOT_SECRET }}
-          image: ${{ env.IMAGE_NAME }}
+          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           registry: ${{ env.REGISTRY }}
           tags: latest ${{ github.sha }}
