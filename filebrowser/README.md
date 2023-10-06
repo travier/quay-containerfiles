@@ -1,7 +1,7 @@
-# Filebrowser container based on the official image
-
-Note: Does not yet work for an unknown reason.
+# Filebrowser container
 
 Changes:
-- Disable healthchecks (too frequent by default)
+- Based on Fedora's container image
+- Fetch the filebrowser binary from the official container image.
 - Run unprivileged
+- Disable healthchecks (too frequent by default)
