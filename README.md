@@ -13,11 +13,12 @@ under the [travier](https://quay.io/user/travier) namespace.
 
 | Quay.io repository | Description |
 |-|-|
-| [php-fpm-ttrss](https://quay.io/repository/travier/php-fpm-ttrss) | [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) and modules for [Tiny Tiny RSS](https://tt-rss.org/) |
-| [unbound](https://quay.io/repository/travier/unbound) | [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/) |
-| [nginx](https://quay.io/repository/travier/nginx) | [nginx](https://nginx.org/) |
-| [quasselcore](https://quay.io/repository/travier/quasselcore) | [Quassel IRC](https://quassel-irc.org/) |
+| [filebrowser](https://quay.io/repository/travier/filebrowser) | Based on [Filebroswer](https://github.com/filebrowser/filebrowser)'s official container image |
 | [libvirtd](https://quay.io/repository/travier/libvirtd) | [libvirt](https://libvirt.org/) daemon to run on rpm-ostree based systems |
+| [nginx](https://quay.io/repository/travier/nginx) | [nginx](https://nginx.org/) |
+| [php-fpm-ttrss](https://quay.io/repository/travier/php-fpm-ttrss) | [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) and modules for [Tiny Tiny RSS](https://tt-rss.org/) |
+| [quasselcore](https://quay.io/repository/travier/quasselcore) | [Quassel IRC](https://quassel-irc.org/) |
+| [unbound](https://quay.io/repository/travier/unbound) | [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/) |
 
 ## Toolbox containers and tools
 
