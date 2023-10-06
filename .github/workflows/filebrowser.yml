@@ -44,8 +44,7 @@ jobs:
           tags: latest ${{ github.sha }}
           containerfiles: ${{ env.IMAGE_NAME }}/Containerfile
           layers: false
-          # Do not use OCI format to be able to override HEALTHCHECK
-          oci: false
+          oci: true
 
       - name: Push to Quay.io
         uses: redhat-actions/push-to-registry@v2
