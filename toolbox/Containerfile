@@ -1,8 +1,5 @@
 FROM registry.fedoraproject.org/fedora-toolbox:38
 
-# Keep container image for ~3 months
-LABEL quay.expires-after=12w
-
 # - Install common development tools
 # - Install build dependencies for some Rust applications
 # - Remove mlocate
