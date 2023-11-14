@@ -1,7 +1,7 @@
 name: "Build libvirtd image"
 
 env:
-  IMAGE_NAME: "libvirtd"
+  NAME: "libvirtd"
   REGISTRY: "quay.io/travier"
 
 on:
@@ -39,10 +39,10 @@ jobs:
       - name: Build container image
         uses: redhat-actions/buildah-build@v2
         with:
-          context: ${{ env.IMAGE_NAME }}
-          image: ${{ env.IMAGE_NAME }}
+          context: ${{ env.NAME }}
+          image: ${{ env.NAME }}
           tags: latest ${{ github.sha }}
-          containerfiles: ${{ env.IMAGE_NAME }}/Containerfile
+          containerfiles: ${{ env.NAME }}/Containerfile
           layers: false
           oci: true
 
@@ -52,6 +52,6 @@ jobs:
         with:
           username: ${{ secrets.BOT_USERNAME }}
           password: ${{ secrets.BOT_SECRET }}
-          image: ${{ env.IMAGE_NAME }}
+          image: ${{ env.NAME }}
           registry: ${{ env.REGISTRY }}
           tags: latest ${{ github.sha }}
