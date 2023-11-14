@@ -2,6 +2,7 @@ name: "Build toolbox-kdedev image"
 
 env:
   NAME: "toolbox-kdedev"
+  TAGS: "latest"
   REGISTRY: "quay.io/travier"
 
 on:
@@ -46,7 +47,7 @@ jobs:
         with:
           context: ${{ env.NAME }}
           image: ${{ env.NAME }}
-          tags: latest ${{ github.sha }}
+          tags: ${{ env.TAGS }}
           containerfiles: ${{ env.NAME }}/Containerfile
           layers: false
           oci: true
@@ -59,4 +60,4 @@ jobs:
           password: ${{ secrets.BOT_SECRET }}
           image: ${{ env.NAME }}
           registry: ${{ env.REGISTRY }}
-          tags: latest ${{ github.sha }}
+          tags: ${{ env.TAGS }}
