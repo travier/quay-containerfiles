@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:38
+FROM registry.fedoraproject.org/fedora:39
 
 # Install unbound, remove unneeded packages and remove all SUID/SGID binaries
 RUN rm /etc/dnf/protected.d/sudo.conf && \
