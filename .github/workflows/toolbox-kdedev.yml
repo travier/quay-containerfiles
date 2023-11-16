@@ -52,7 +52,7 @@ jobs:
           layers: false
           oci: true
 
-      - name: Push to Quay.io
+      - name: Push to Container Registry
         uses: redhat-actions/push-to-registry@v2
         if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
         with:
