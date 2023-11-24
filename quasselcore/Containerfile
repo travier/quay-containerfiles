@@ -1,8 +1,5 @@
 FROM registry.fedoraproject.org/fedora:38
 
-# Keep container image for ~3 months
-LABEL quay.expires-after=12w
-
 # Install quasselcore, remove unneeded packages and remove all SUID/SGID binaries
 RUN rm /etc/dnf/protected.d/sudo.conf && \
     dnf -y remove pam sudo && \

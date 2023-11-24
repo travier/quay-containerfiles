@@ -2,9 +2,6 @@ FROM docker.io/filebrowser/filebrowser:latest as binary
 
 FROM registry.fedoraproject.org/fedora:38
 
-# Keep container image for ~6 months
-LABEL quay.expires-after=24w
-
 # Remove unneeded packages and remove all SUID/SGID binaries
 RUN rm /etc/dnf/protected.d/sudo.conf && \
     dnf -y remove pam shadow-utils sudo && \
