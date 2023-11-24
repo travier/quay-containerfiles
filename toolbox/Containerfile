@@ -42,6 +42,7 @@ RUN dnf -y distrosync && \
       make \
       meson \
       minisign \
+      mkosi \
       mkpasswd \
       npm \
       pandoc \
