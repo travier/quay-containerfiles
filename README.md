@@ -31,6 +31,37 @@ The toolbox container images are based on the Fedora toolbox container image.
 | [toolbox-root](https://quay.io/repository/travier/toolbox-root) | Tools useful for system administration |
 | [toolbox-texlive](https://quay.io/repository/travier/toolbox-texlive) | Tools and binaries to build LaTeX based projects |
 
+## Verifying sigstore container signatures with podman
+
+How to configure sigstore signature verification in podman:
+
+```
+$ sudo mkdir /etc/pki/containers
+$ sudo cp quay-travier-containers.pub /etc/pki/containers/
+$ sudo restorecon -RFv /etc/pki/containers
+
+$ cat /etc/containers/registries.d/quay.io-travier.yaml
+docker:
+  quay.io/travier:
+    use-sigstore-attachments: true
+$ sudo restorecon -RFv /etc/containers/registries.d/quay.io-travier.yaml
+
+$ cat /etc/containers/policy.json
+...
+    "transports": {
+        "docker": {
+            "quay.io/travier": [
+                {
+                    "type": "sigstoreSigned",
+                    "keyPath": "/etc/pki/containers/quay-travier-containers.pub",
+                    "signedIdentity": {
+                        "type": "matchRepository"
+                    }
+                }
+            ],
+...
+```
+
 ## License
 
 See [LICENSE](LICENSE).
