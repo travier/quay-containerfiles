@@ -38,7 +38,8 @@ How to configure sigstore signature verification in podman:
 
 ```
 $ sudo mkdir /etc/pki/containers
-$ sudo cp quay-travier-containers.pub /etc/pki/containers/
+$ curl -O "https://github.com/travier/quay-containerfiles/raw/main/quay.io-travier-containers.pub"
+$ sudo cp quay.io-travier-containers.pub /etc/pki/containers/
 $ sudo restorecon -RFv /etc/pki/containers
 
 $ cat /etc/containers/registries.d/quay.io-travier.yaml
@@ -60,7 +61,7 @@ $ cat /etc/containers/policy.json
             "quay.io/travier": [
                 {
                     "type": "sigstoreSigned",
-                    "keyPath": "/etc/pki/containers/quay-travier-containers.pub",
+                    "keyPath": "/etc/pki/containers/quay.io-travier-containers.pub",
                     "signedIdentity": {
                         "type": "matchRepository"
                     }
