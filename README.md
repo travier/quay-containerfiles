@@ -48,9 +48,15 @@ docker:
 $ sudo restorecon -RFv /etc/containers/registries.d/quay.io-travier.yaml
 
 $ cat /etc/containers/policy.json
-...
+{
+    "default": [
+        {
+            "type": "reject"
+        }
+    ],
     "transports": {
         "docker": {
+            ...
             "quay.io/travier": [
                 {
                     "type": "sigstoreSigned",
@@ -60,6 +66,16 @@ $ cat /etc/containers/policy.json
                     }
                 }
             ],
+            ...
+            "": [
+                {
+                    "type": "insecureAcceptAnything"
+                }
+            ]
+        },
+        ...
+    }
+}
 ...
 ```
 
