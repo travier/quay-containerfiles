@@ -9,14 +9,14 @@ on:
     branches:
       - main
     paths:
-      - toolbox-kdedev6/*
-      - .github/workflows/toolbox-kdedev6.yml
+      - 'toolbox-kdedev6/**'
+      - '.github/workflows/toolbox-kdedev6.yml'
   push:
     branches:
       - main
     paths:
-      - toolbox-kdedev6/*
-      - .github/workflows/toolbox-kdedev6.yml
+      - 'toolbox-kdedev6/**'
+      - '.github/workflows/toolbox-kdedev6.yml'
   schedule:
     - cron:  '0 0 * * MON'
 

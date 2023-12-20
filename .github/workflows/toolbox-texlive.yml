@@ -9,14 +9,14 @@ on:
     branches:
       - main
     paths:
-      - toolbox-texlive/*
-      - .github/workflows/toolbox-texlive.yml
+      - 'toolbox-texlive/**'
+      - '.github/workflows/toolbox-texlive.yml'
   push:
     branches:
       - main
     paths:
-      - toolbox-texlive/*
-      - .github/workflows/toolbox-texlive.yml
+      - 'toolbox-texlive/**'
+      - '.github/workflows/toolbox-texlive.yml'
   schedule:
     - cron:  '0 0 * * MON'
 

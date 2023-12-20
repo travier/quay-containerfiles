@@ -9,14 +9,14 @@ on:
     branches:
       - main
     paths:
-      - unbound/*
-      - .github/workflows/unbound.yml
+      - 'unbound/**'
+      - '.github/workflows/unbound.yml'
   push:
     branches:
       - main
     paths:
-      - unbound/*
-      - .github/workflows/unbound.yml
+      - 'unbound/**'
+      - '.github/workflows/unbound.yml'
   schedule:
     - cron:  '0 0 * * MON'
 

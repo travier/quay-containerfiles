@@ -9,14 +9,14 @@ on:
     branches:
       - main
     paths:
-      - php-fpm-ttrss/*
-      - .github/workflows/php-fpm-ttrss.yml
+      - 'php-fpm-ttrss/**'
+      - '.github/workflows/php-fpm-ttrss.yml'
   push:
     branches:
       - main
     paths:
-      - php-fpm-ttrss/*
-      - .github/workflows/php-fpm-ttrss.yml
+      - 'php-fpm-ttrss/**'
+      - '.github/workflows/php-fpm-ttrss.yml'
   schedule:
     - cron:  '0 0 * * MON'
 

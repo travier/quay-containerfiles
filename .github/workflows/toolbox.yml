@@ -9,14 +9,14 @@ on:
     branches:
       - main
     paths:
-      - toolbox/*
-      - .github/workflows/toolbox.yml
+      - 'toolbox/**'
+      - '.github/workflows/toolbox.yml'
   push:
     branches:
       - main
     paths:
-      - toolbox/*
-      - .github/workflows/toolbox.yml
+      - 'toolbox/**'
+      - '.github/workflows/toolbox.yml'
   schedule:
     - cron:  '0 0 * * MON'
 
