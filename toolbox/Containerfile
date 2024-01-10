@@ -58,6 +58,7 @@ RUN dnf -y distrosync && \
       ruby-devel \
       rubygem-bundler \
       shfmt \
+      skopeo \
       socat \
       source-foundry-hack-fonts \
       sqlite \
