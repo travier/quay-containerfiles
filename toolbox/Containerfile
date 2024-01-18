@@ -1,5 +1,4 @@
-# FROM registry.fedoraproject.org/fedora-toolbox:39
-FROM quay.io/toolbx-images/fedora-toolbox:39
+FROM registry.fedoraproject.org/fedora-toolbox:39
 
 # - Install common development tools
 # - Install build dependencies for some Rust applications

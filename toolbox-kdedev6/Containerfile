@@ -1,4 +1,4 @@
-FROM quay.io/toolbx-images/fedora-toolbox:40
+FROM registry.fedoraproject.org/fedora-toolbox:40
 
 # - Install common development tools
 # - Install all build deps for kdesrc-build (plasma only, no apps)

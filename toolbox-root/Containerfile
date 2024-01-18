@@ -5,8 +5,7 @@ RUN dnf update -y && \
     cargo install bandwhich
 RUN mv /root/.cargo/bin/bandwhich /
 
-# FROM registry.fedoraproject.org/fedora-toolbox:39
-FROM quay.io/toolbx-images/fedora-toolbox:39
+FROM registry.fedoraproject.org/fedora-toolbox:39
 
 # Copy bandwhich from builder container
 COPY --from=builder /bandwhich /usr/local/bin/bandwhich
