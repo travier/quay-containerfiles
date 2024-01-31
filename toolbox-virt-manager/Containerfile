@@ -1,0 +1,15 @@
+FROM registry.fedoraproject.org/fedora-toolbox:39
+
+# - Install virt-manager & virt-install
+RUN dnf -y distrosync && \
+    dnf -y install \
+      vim \
+      virt-install \
+      virt-manager \
+      zsh \
+    && \
+    dnf clean all
+
+# No need to clear the output as we will never use ZSH as a login shell and
+# this clears output when exiting toolboxes.
+RUN sed -i '/clear/d' /etc/zlogout
