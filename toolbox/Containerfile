@@ -7,7 +7,6 @@ RUN dnf -y distrosync && \
     dnf -y install \
       ImageMagick \
       ShellCheck \
-      awscli \
       brotli \
       bind-utils \
       butane \
