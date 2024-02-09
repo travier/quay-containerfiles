@@ -1,0 +1,18 @@
+FROM registry.fedoraproject.org/fedora-toolbox:39
+
+# - Install cloud cli tools
+# - Remove mlocate
+RUN dnf -y distrosync && \
+    dnf -y install \
+      awscli \
+      azurecli \
+      oci-cli \
+      vim \
+      zsh \
+      && \
+    dnf -y remove mlocate && \
+    dnf clean all
+
+# No need to clear the output as we will never use ZSH as a login shell and
+# this clears output when exiting toolboxes.
+RUN sed -i '/clear/d' /etc/zlogout
