@@ -13,6 +13,7 @@ RUN dnf -y distrosync && \
       awscli \
       azure-cli \
       google-cloud-cli \
+      jq \
       oci-cli \
       vim \
       zsh \
