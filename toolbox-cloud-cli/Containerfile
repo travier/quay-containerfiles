@@ -5,7 +5,7 @@ FROM registry.fedoraproject.org/fedora-toolbox:39
 RUN dnf -y distrosync && \
     dnf -y install \
       awscli \
-      azurecli \
+      azure-cli \
       oci-cli \
       vim \
       zsh \
