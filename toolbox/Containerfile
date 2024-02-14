@@ -2,6 +2,7 @@ FROM registry.fedoraproject.org/fedora-toolbox:39
 
 # - Install common development tools
 # - Install build dependencies for some Rust applications
+# - Install virt-manager and virt-install
 # - Remove mlocate
 RUN dnf -y distrosync && \
     dnf -y install \
@@ -70,7 +71,12 @@ RUN dnf -y distrosync && \
       openssl-devel \
       perl-FindBin \
       perl-IPC-Cmd \
-      perl-File-Compare && \
+      perl-File-Compare \
+    && \
+    dnf -y install \
+      virt-install \
+      virt-manager \
+    && \
     dnf -y remove mlocate && \
     dnf -y install dnf-plugins-core && \
     dnf clean all
