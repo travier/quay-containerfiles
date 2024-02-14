@@ -5,20 +5,7 @@ env:
   REGISTRY: "quay.io/travier"
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'toolbox-root/**'
-      - '.github/workflows/toolbox-root.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'toolbox-root/**'
-      - '.github/workflows/toolbox-root.yml'
-  schedule:
-    - cron:  '0 0 * * MON'
+  workflow_dispatch:
 
 permissions: read-all
 

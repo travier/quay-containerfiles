@@ -5,20 +5,7 @@ env:
   REGISTRY: "quay.io/travier"
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'toolbox-texlive/**'
-      - '.github/workflows/toolbox-texlive.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'toolbox-texlive/**'
-      - '.github/workflows/toolbox-texlive.yml'
-  schedule:
-    - cron:  '0 0 * * MON'
+  workflow_dispatch:
 
 permissions: read-all
 
