@@ -14,7 +14,7 @@ under the [travier](https://quay.io/user/travier) namespace.
 | Quay.io repository | Description |
 |-|-|
 | [filebrowser](https://quay.io/repository/travier/filebrowser) | Based on [Filebrowser](https://github.com/filebrowser/filebrowser)'s official container image |
-| [libvirtd](https://quay.io/repository/travier/libvirtd) | [libvirt](https://libvirt.org/) daemon to run on rpm-ostree based systems |
+| [libvirtd](https://quay.io/repository/travier/libvirtd) | [libvirt](https://libvirt.org/) daemon to run on rpm-ostree based systems (see [README](libvirtd/README.md))|
 | [nginx](https://quay.io/repository/travier/nginx) | [nginx](https://nginx.org/) |
 | [php-fpm-ttrss](https://quay.io/repository/travier/php-fpm-ttrss) | [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) and modules for [Tiny Tiny RSS](https://tt-rss.org/) |
 | [quasselcore](https://quay.io/repository/travier/quasselcore) | [Quassel IRC](https://quassel-irc.org/) |
