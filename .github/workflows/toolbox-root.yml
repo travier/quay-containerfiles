@@ -20,6 +20,11 @@ jobs:
   build-push-image:
     runs-on: ubuntu-latest
     steps:
+      - name: Reclaim disk space
+        run: |
+          sudo docker image prune --all --force
+          sudo rm -rf "/usr/local/lib/android"
+
       - name: Checkout repo
         uses: actions/checkout@v4
 
