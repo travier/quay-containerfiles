@@ -11,89 +11,92 @@ COPY google-cloud-sdk.repo /etc/yum.repos.d/google-cloud-sdk.repo
 # - Install virt-manager and virt-install
 # - Install Cloud command line tools
 # - Remove mlocate
-RUN dnf -y distrosync && \
-    dnf -y install \
-      ImageMagick \
-      ShellCheck \
+RUN dnf -y distrosync \
+    && dnf -y install \
       bind-utils \
-      brotli \
-      butane \
-      centos-packager \
-      centpkg \
-      copr-cli \
-      coreos-installer \
-      createrepo_c \
-      dejavu-sans-fonts \
-      dejavu-sans-mono-fonts \
-      fbrnch \
       fd-find \
-      fedmod \
-      fedpkg \
-      flatpak-builder \
       fzf \
-      g++ \
-      gcc \
-      gettext \
       git-absorb \
       git-delta \
-      go \
-      graphviz \
-      hugo \
-      ignition-validate \
       inotify-tools \
-      intltool \
       jq \
-      json-glib-devel \
       just \
       make \
-      meson \
       minisign \
-      mkosi \
       mkpasswd \
-      npm \
-      pandoc \
-      pdf-stapler \
       pwgen \
+      ripgrep \
+      skopeo \
+      socat \
+      sqlite \
+      vim \
+      zoxide \
+      zsh \
+    && dnf -y install \
+      ShellCheck \
+      copr-cli \
+      createrepo_c \
+      g++ \
+      gcc \
+      intltool \
+      json-glib-devel \
+      meson \
       pylint \
       python3-dateparser \
       python3-pip \
       python3-rust2rpm \
+      shfmt \
+      source-foundry-hack-fonts \
+      yamllint \
+    && dnf -y install \
+      flatpak-builder \
+      --exclude=adobe-source-code-pro-fonts,glib-networking,low-memory-monitor,memstrack,p11-kit-server,pipewire,tpm2-tools,xdg-desktop-portal \
+    && dnf -y install \
+      fbrnch \
+      fedpkg \
+      --exclude=podman,btrfs-progs \
+    && dnf -y install \
+      go \
+      --exclude=mercurial,subversion \
+    && dnf -y install \
+      mkosi \
+      --exclude=apt,arch-install-scripts,archlinux-keyring,debian-keyring,logrotate,pacman,zypper \
+    && dnf -y install \
+      butane \
+      coreos-installer \
+      ignition-validate \
+    && dnf -y install \
+      ImageMagick \
+      brotli \
+      dejavu-sans-fonts \
+      dejavu-sans-mono-fonts \
+      graphviz \
+      hugo \
+      npm \
+      pandoc \
+      pdf-stapler \
       qrencode \
-      ripgrep \
       ruby \
       ruby-devel \
       rubygem-bundler \
-      shfmt \
-      skopeo \
-      socat \
-      source-foundry-hack-fonts \
-      sqlite \
-      vim \
-      yamllint \
       yt-dlp \
-      zoxide \
-      zsh \
-      --exclude=nodejs-docs,nodejs-full-i18n,btrfs-progs,abattis-cantarell-fonts,adobe-source-code-pro-fonts,systemd-networkd,mercurial-py3,mercurial-py2,subversion \
-    && \
-    dnf -y install dnf-plugins-core && \
-    dnf -y install \
+      --exclude=adobe-source-code-pro-fonts,logrotate,low-memory-monitor,nodejs-docs,nodejs-full-i18n,pipewire,tracker,tracker-miners,upower,xdg-desktop-portal-gtk \
+    && dnf -y install \
       openssl-devel \
       perl-FindBin \
       perl-IPC-Cmd \
       perl-File-Compare \
-    && \
-    dnf -y install \
+    && dnf -y install \
       virt-install \
       virt-manager \
-    && \
-    dnf -y install \
+      --exclude=libvirt-daemon,libvirt-daemon-config-network,libvirt-daemon-kvm,libvirt-daemon-qemu,passt,pipewire \
+    && dnf -y install \
       awscli \
       azure-cli \
       google-cloud-cli \
       oci-cli \
-    && \
-    dnf -y remove mlocate && \
-    dnf clean all
+    && dnf -y remove mlocate \
+    && dnf clean all
 
 ARG DOCTL_URL="https://github.com/digitalocean/doctl/releases/download/v1.104.0/doctl-1.104.0-linux-amd64.tar.gz"
 ARG DOCTL_SHA256SUMS="f758b0c2fb7857db2bd00439155154f2ab8bee71c4f3640f90f64ec35256ca53  doctl-1.104.0-linux-amd64.tar.gz"
