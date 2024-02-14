@@ -15,8 +15,8 @@ RUN dnf -y distrosync && \
     dnf -y install \
       ImageMagick \
       ShellCheck \
-      brotli \
       bind-utils \
+      brotli \
       butane \
       centos-packager \
       centpkg \
@@ -73,7 +73,9 @@ RUN dnf -y distrosync && \
       yt-dlp \
       zoxide \
       zsh \
-      --exclude=nodejs-docs,nodejs-full-i18n,btrfs-progs,abattis-cantarell-fonts,adobe-source-code-pro-fonts,systemd-networkd,mercurial-py3,mercurial-py2,subversion && \
+      --exclude=nodejs-docs,nodejs-full-i18n,btrfs-progs,abattis-cantarell-fonts,adobe-source-code-pro-fonts,systemd-networkd,mercurial-py3,mercurial-py2,subversion \
+    && \
+    dnf -y install dnf-plugins-core && \
     dnf -y install \
       openssl-devel \
       perl-FindBin \
@@ -91,7 +93,6 @@ RUN dnf -y distrosync && \
       oci-cli \
     && \
     dnf -y remove mlocate && \
-    dnf -y install dnf-plugins-core && \
     dnf clean all
 
 ARG DOCTL_URL="https://github.com/digitalocean/doctl/releases/download/v1.104.0/doctl-1.104.0-linux-amd64.tar.gz"
