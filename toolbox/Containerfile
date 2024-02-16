@@ -34,6 +34,7 @@ RUN dnf -y distrosync \
       zsh \
     && dnf -y install \
       ShellCheck \
+      black \
       copr-cli \
       createrepo_c \
       g++ \
