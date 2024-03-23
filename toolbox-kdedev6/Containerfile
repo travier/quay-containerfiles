@@ -106,9 +106,12 @@ RUN dnf -y update && \
       && \
     dnf -y builddep \
       plasma-discover \
+      && \
+    dnf -y install \
       kf6-purpose-devel \
-      qt6-qtwebview-devel \
+      qcoro-qt6-devel \
       qt6-qtbase \
+      qt6-qtwebview-devel \
       ; \
     dnf -y remove mlocate && \
     dnf clean all
