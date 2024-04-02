@@ -120,8 +120,6 @@ RUN bins=( \
     "podman" \
     "rpm-ostree" \
     "systemctl" \
-    "virsh" \
-    "virt-install" \
     "xdg-open" \
     ); \
     for f in "${bins[@]}"; do \
