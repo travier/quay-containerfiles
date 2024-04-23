@@ -5,20 +5,7 @@ env:
   REGISTRY: "quay.io/travier"
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'libvirtd/**'
-      - '.github/workflows/libvirtd.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'libvirtd/**'
-      - '.github/workflows/libvirtd.yml'
-  schedule:
-    - cron:  '0 0 * * MON'
+  workflow_dispatch:
 
 permissions: read-all
 
