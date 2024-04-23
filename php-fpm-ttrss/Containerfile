@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:39
+FROM registry.fedoraproject.org/fedora:40
 
 # Install php and required modules, remove unneeded packages and remove all SUID/SGID binaries
 RUN rm /etc/dnf/protected.d/sudo.conf && \
@@ -26,7 +26,6 @@ RUN rm /etc/dnf/protected.d/sudo.conf && \
         /etc/php.d/20-shmop.ini \
         /etc/php.d/20-simplexml.ini \
         /etc/php.d/20-soap.ini \
-        /etc/php.d/20-sockets.ini \
         /etc/php.d/20-sqlite3.ini \
         /etc/php.d/20-sysvmsg.ini \
         /etc/php.d/20-sysvsem.ini \
