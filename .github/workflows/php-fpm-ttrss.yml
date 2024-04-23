@@ -19,6 +19,7 @@ on:
       - '.github/workflows/php-fpm-ttrss.yml'
   schedule:
     - cron:  '0 0 * * MON'
+  workflow_dispatch:
 
 permissions: read-all
 

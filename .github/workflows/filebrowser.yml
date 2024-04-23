@@ -19,6 +19,7 @@ on:
       - '.github/workflows/filebrowser.yml'
   schedule:
     - cron:  '0 0 * * MON'
+  workflow_dispatch:
 
 permissions: read-all
 
