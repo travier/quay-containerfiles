@@ -1,14 +1,12 @@
-FROM registry.fedoraproject.org/fedora-toolbox:39
+FROM registry.fedoraproject.org/fedora-toolbox:40
 
-# - Disable fedora-cisco-openh264 repo
 # - Install common development tools
 # - Install all build deps for kdesrc-build (plasma only, no apps)
 # - Install extra packages for KDE development
 # - Install build deps for Discover development. This will ignore errors
 #   encountered during flatpak installation.
 # - Remove mlocate
-RUN sed -i 's/enabled=1/enabled=0/g' /etc/yum.repos.d/fedora-cisco-openh264.repo && \
-    dnf -y update && \
+RUN dnf -y update && \
     dnf -y install \
       ShellCheck \
       fd-find \
@@ -28,10 +26,6 @@ RUN sed -i 's/enabled=1/enabled=0/g' /etc/yum.repos.d/fedora-cisco-openh264.repo
       && \
     dnf -y install \
       "cmake(Gpgmepp)" \
-      "pkgconfig(gstreamer-1.0)" \
-      "pkgconfig(gstreamer-app-1.0)" \
-      "pkgconfig(gstreamer-audio-1.0)" \
-      "pkgconfig(gstreamer-video-1.0)" \
       "pkgconfig(libcanberra)" \
       "pkgconfig(libnl-3.0)" \
       "pkgconfig(libnl-route-3.0)" \
@@ -82,15 +76,13 @@ RUN sed -i 's/enabled=1/enabled=0/g' /etc/yum.repos.d/fedora-cisco-openh264.repo
       polkit-devel \
       pulseaudio-libs-devel \
       python3-cairo-devel \
-      qt5-qtbase-private-devel \
-      qt5-qtbase-static \
-      qt5-qtquickcontrols2-devel \
-      qt5-qtscript-devel \
-      qt5-qtsensors-devel \
-      qt5-qttools-devel \
-      qt5-qttools-static \
-      qt5-qtwayland-devel \
-      qt5-qtwebkit-devel \
+      qt6-qtbase-private-devel \
+      qt6-qtbase-static \
+      qt6-qtquickcontrols2-devel \
+      qt6-qtsensors-devel \
+      qt6-qttools-devel \
+      qt6-qttools-static \
+      qt6-qtwayland-devel \
       sassc \
       wayland-devel \
       wayland-protocols-devel \
@@ -114,9 +106,12 @@ RUN sed -i 's/enabled=1/enabled=0/g' /etc/yum.repos.d/fedora-cisco-openh264.repo
       && \
     dnf -y builddep \
       plasma-discover \
-      kf5-purpose-devel \
-      qt5-qtwebview-devel \
-      qt5-qtbase \
+      && \
+    dnf -y install \
+      kf6-purpose-devel \
+      qcoro-qt6-devel \
+      qt6-qtbase \
+      qt6-qtwebview-devel \
       ; \
     dnf -y remove mlocate && \
     dnf clean all

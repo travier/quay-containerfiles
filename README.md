@@ -28,7 +28,6 @@ The toolbox container images are based on the Fedora toolbox container image.
 |-|-|
 | [toolbox](https://quay.io/repository/travier/toolbox) | Personal toolbox for general use cases |
 | [toolbox-kdedev](https://quay.io/repository/travier/toolbox-kdedev) | Tools and dependencies needed for KDE development |
-| [toolbox-kdedev6](https://quay.io/repository/travier/toolbox-kdedev6) | Tools and dependencies needed for KDE 6 development |
 
 ## Verifying sigstore container signatures with podman
 
