@@ -19,6 +19,7 @@ on:
       - '.github/workflows/toolbox-kdedev.yml'
   schedule:
     - cron:  '0 0 * * MON'
+  workflow_dispatch:
 
 permissions: read-all
 
