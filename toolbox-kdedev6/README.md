@@ -1,1 +1,0 @@
-# Toolbox for KDE development
