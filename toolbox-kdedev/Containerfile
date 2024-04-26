@@ -112,6 +112,7 @@ RUN dnf -y update && \
       qcoro-qt6-devel \
       qt6-qtbase \
       qt6-qtwebview-devel \
+      kf6-kiconthemes-devel \
       ; \
     dnf -y remove mlocate && \
     dnf clean all
