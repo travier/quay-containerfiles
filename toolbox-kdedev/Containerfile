@@ -6,25 +6,45 @@ FROM registry.fedoraproject.org/fedora-toolbox:40
 # - Install build deps for Discover development. This will ignore errors
 #   encountered during flatpak installation.
 # - Remove mlocate
-RUN dnf -y update && \
-    dnf -y install \
-      ShellCheck \
+RUN dnf -y distrosync \
+    && dnf -y install \
+      bind-utils \
       fd-find \
-      fedpkg \
-      flatpak-builder \
       fzf \
-      go \
+      git-absorb \
+      git-delta \
+      inotify-tools \
       jq \
       just \
-      meson \
+      make \
+      minisign \
+      mkpasswd \
+      pwgen \
       ripgrep \
+      skopeo \
+      socat \
       sqlite \
       vim \
       zoxide \
       zsh \
-      --exclude=btrfs-progs,abattis-cantarell-fonts,adobe-source-code-pro-fonts,systemd-networkd,mercurial-py3,mercurial-py2,subversion \
-      && \
-    dnf -y install \
+    && dnf -y install \
+      ShellCheck \
+      black \
+      copr-cli \
+      createrepo_c \
+      g++ \
+      gcc \
+      intltool \
+      json-glib-devel \
+      meson \
+      pylint \
+      python3-dateparser \
+      python3-pip \
+      python3-rust2rpm \
+      shfmt \
+      source-foundry-hack-fonts \
+      yamllint \
+    && dnf -y install \
       "cmake(Gpgmepp)" \
       "pkgconfig(libcanberra)" \
       "pkgconfig(libnl-3.0)" \
@@ -94,8 +114,7 @@ RUN dnf -y update && \
       xcb-util-wm-devel \
       xcb-util-wm-devel \
       xdg-desktop-portal-devel \
-      && \
-    dnf -y install \
+    && dnf -y install \
       breeze-cursor-theme \
       breeze-icon-theme \
       gdb \
@@ -103,19 +122,16 @@ RUN dnf -y update && \
       kdevelop \
       rpm-ostree-devel \
       strace \
-      && \
-    dnf -y builddep \
+    && dnf -y builddep \
       plasma-discover \
-      && \
-    dnf -y install \
+    && dnf -y install \
       kf6-purpose-devel \
       qcoro-qt6-devel \
       qt6-qtbase \
       qt6-qtwebview-devel \
       kf6-kiconthemes-devel \
-      ; \
-    dnf -y remove mlocate && \
-    dnf clean all
+    && dnf -y remove mlocate \
+    && dnf clean all
 
 # No need to clear the output as we will never use ZSH as a login shell and
 # this clears output when exiting toolboxes.
