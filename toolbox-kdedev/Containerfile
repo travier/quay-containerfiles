@@ -125,10 +125,7 @@ RUN dnf -y distrosync \
     && dnf -y builddep \
       plasma-discover \
     && dnf -y install \
-      kf6-purpose-devel \
       qcoro-qt6-devel \
-      qt6-qtbase \
-      qt6-qtwebview-devel \
       kf6-kiconthemes-devel \
     && dnf -y remove mlocate \
     && dnf clean all
