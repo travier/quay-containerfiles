@@ -2,6 +2,7 @@ FROM registry.fedoraproject.org/fedora:40
 
 # Install quasselcore, remove unneeded packages and remove all SUID/SGID binaries
 RUN rm /etc/dnf/protected.d/sudo.conf && \
+    sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo && \
     dnf -y remove pam sudo && \
     dnf -y update && \
     dnf -y install quassel-core && \
