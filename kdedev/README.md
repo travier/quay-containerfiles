@@ -8,7 +8,7 @@ toolbox or distrobox.
 Create a toolbox or distrobox container from this image:
 
 ```
-$ toolbox create --image ...
+$ toolbox create --image quay.io/travier/kdedev:latest kdedev
 ```
 
 Enter the container:
@@ -34,6 +34,6 @@ to get updated dependencies.
 
 ```
 $ toolbox rm --force kdedev
-$ podman pull ...
-$ toolbox create --image ...
+$ podman pull quay.io/travier/kdedev:latest
+$ toolbox create --image quay.io/travier/kdedev:latest kdedev
 ```
