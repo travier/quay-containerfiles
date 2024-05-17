@@ -34,6 +34,8 @@ RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo 
         perl-IPC-Cmd \
         perl-MD5 \
         perl-FindBin \
+    && dnf install -y \
+        libaccounts-glib-devel \
     && mkdir -p /usr/src/kde \
     && cd /usr/src/kde/ \
     && git clone https://invent.kde.org/sdk/kdesrc-build.git \
