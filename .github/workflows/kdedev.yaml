@@ -42,9 +42,16 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Setup QEMU for multi-arch builds
+        shell: bash
+        run: |
+          sudo apt update
+          sudo apt install qemu-user-static
+
       - name: Build container image
         uses: redhat-actions/buildah-build@v2
         with:
+          platforms: linux/amd64, linux/arm64
           context: ${{ env.NAME }}
           image: ${{ env.NAME }}
           tags: latest
@@ -77,7 +84,7 @@ jobs:
       - name: Sign container image
         if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
         run: |
-          cosign sign -y --key env://COSIGN_PRIVATE_KEY ${{ env.REGISTRY }}/${{ env.NAME }}@${{ steps.push.outputs.digest }}
+          cosign sign -y --recursive --key env://COSIGN_PRIVATE_KEY ${{ env.REGISTRY }}/${{ env.NAME }}@${{ steps.push.outputs.digest }}
         env:
           COSIGN_EXPERIMENTAL: false
           COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
