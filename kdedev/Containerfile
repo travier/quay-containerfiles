@@ -3,6 +3,8 @@ FROM registry.fedoraproject.org/fedora-toolbox:40
 # - Install some common development tools
 # - Install kdesrc-build Perl dependencies
 # - Install kdesrc-build and KDE dependencies
+# - We do not clean dnf metadata & cache as this will speed up kdesrc-build
+#   initial setup
 RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo \
     && dnf -y distrosync \
     && dnf -y install \
@@ -37,5 +39,4 @@ RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo 
     && git clone https://invent.kde.org/sdk/kdesrc-build.git \
     && cd kdesrc-build \
     && ln -snf /usr/src/kde/kdesrc-build/kdesrc-build /usr/bin/kdesrc-build \
-    && kdesrc-build --initial-setup \
-    && dnf clean all
+    && kdesrc-build --initial-setup
