@@ -1,11 +1,5 @@
 FROM registry.fedoraproject.org/fedora-toolbox:40
 
-# Can not use herdocs here until GitHub workflows move to a newer Ubuntu
-# release with a newer buildah:
-# - https://www.docker.com/blog/introduction-to-heredocs-in-dockerfiles/
-# - https://github.com/containers/buildah/issues/3474
-# COPY google-cloud-sdk.repo /etc/yum.repos.d/google-cloud-sdk.repo
-
 # - Install common development tools
 # - Install build dependencies for some Rust applications
 # - Install virt-manager and virt-install
@@ -94,22 +88,6 @@ RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo 
       --exclude=libvirt-daemon,libvirt-daemon-config-network,libvirt-daemon-kvm,libvirt-daemon-qemu,passt,pipewire \
     && dnf -y remove mlocate \
     && dnf clean all
-
-# && dnf -y install \
-#   awscli \
-#   azure-cli \
-#   google-cloud-cli \
-#   oci-cli \
-
-# ARG DOCTL_URL="https://github.com/digitalocean/doctl/releases/download/v1.104.0/doctl-1.104.0-linux-amd64.tar.gz"
-# ARG DOCTL_SHA256SUMS="f758b0c2fb7857db2bd00439155154f2ab8bee71c4f3640f90f64ec35256ca53  doctl-1.104.0-linux-amd64.tar.gz"
-
-# # Manually install doctl
-# RUN wget "${DOCTL_URL}" && \
-#     echo "${DOCTL_SHA256SUMS}" | sha256sum --check && \
-#     tar xf doctl-*-linux-amd64.tar.gz && \
-#     rm doctl-*-linux-amd64.tar.gz && \
-#     install -o 0 -g 0 -m 755 doctl /usr/local/bin/doctl
 
 # Setup host-runner script and symlinks
 COPY host-runner /usr/local/bin/host-runner
