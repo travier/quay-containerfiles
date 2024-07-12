@@ -102,6 +102,7 @@ RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo 
       qt6-qtbase-static \
       qt6-qtquickcontrols2-devel \
       qt6-qtsensors-devel \
+      qt6-qtshadertools-devel \
       qt6-qttools-devel \
       qt6-qttools-static \
       qt6-qtwayland-devel \
