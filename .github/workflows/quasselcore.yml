@@ -5,20 +5,6 @@ env:
   REGISTRY: "quay.io/travier"
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'quasselcore/**'
-      - '.github/workflows/quasselcore.yml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'quasselcore/**'
-      - '.github/workflows/quasselcore.yml'
-  schedule:
-    - cron:  '0 0 * * MON'
   workflow_dispatch:
 
 permissions: read-all
