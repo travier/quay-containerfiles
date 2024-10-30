@@ -1,6 +1,6 @@
 FROM docker.io/filebrowser/filebrowser:latest as binary
 
-FROM registry.fedoraproject.org/fedora:40
+FROM registry.fedoraproject.org/fedora:41
 
 # Remove unneeded packages and remove all SUID/SGID binaries
 RUN rm /etc/dnf/protected.d/sudo.conf && \

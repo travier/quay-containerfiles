@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:40
+FROM registry.fedoraproject.org/fedora:41
 
 # Install php and required modules, remove unneeded packages and remove all SUID/SGID binaries
 RUN rm /etc/dnf/protected.d/sudo.conf && \
