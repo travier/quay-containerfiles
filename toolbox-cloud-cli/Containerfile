@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora-toolbox:40
+FROM registry.fedoraproject.org/fedora-toolbox:41
 
 # Can not use herdocs here until GitHub workflows move to a newer Ubuntu
 # release with a newer buildah:
@@ -10,7 +10,7 @@ COPY google-cloud-sdk.repo /etc/yum.repos.d/google-cloud-sdk.repo
 # - Install cloud command line tools
 # - Remove mlocate
 RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo \
-    && dnf -y distrosync \
+    && dnf -y update \
     && dnf -y install \
       git-absorb \
       git-delta \
