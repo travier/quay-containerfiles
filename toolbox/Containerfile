@@ -99,7 +99,8 @@ RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo 
       virt-manager \
       --exclude=libvirt-daemon,libvirt-daemon-config-network,libvirt-daemon-kvm,libvirt-daemon-qemu,passt,pipewire \
     && dnf -y remove mlocate \
-    && dnf clean all
+    && dnf clean all \
+    && ln -snf /run/host/run/libvirt /run/libvirt
 
 # Setup host-runner script and symlinks
 COPY host-runner /usr/local/bin/host-runner
