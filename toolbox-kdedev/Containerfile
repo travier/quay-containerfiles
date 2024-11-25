@@ -9,21 +9,14 @@ FROM registry.fedoraproject.org/fedora-toolbox:41
 RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo \
     && dnf -y update \
     && dnf -y install \
-      bind-utils \
       fd-find \
-      fzf \
       git-absorb \
       git-delta \
       inotify-tools \
       jq \
       just \
       make \
-      minisign \
-      mkpasswd \
-      pwgen \
       ripgrep \
-      skopeo \
-      socat \
       sqlite \
       vim \
       zoxide \
@@ -31,17 +24,12 @@ RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo 
     && dnf -y install \
       ShellCheck \
       black \
-      copr-cli \
-      createrepo_c \
       g++ \
       gcc \
-      intltool \
       json-glib-devel \
       meson \
       pylint \
-      python3-dateparser \
       python3-pip \
-      python3-rust2rpm \
       shfmt \
       source-foundry-hack-fonts \
       yamllint \
