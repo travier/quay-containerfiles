@@ -2,7 +2,6 @@ FROM registry.fedoraproject.org/fedora-toolbox:41
 
 # - Install common development tools
 # - Install gh (GitHub) cli
-# - Install tools to build sysexts
 # - Install build dependencies for some Rust applications
 # - Install virt-manager and virt-install
 # - Install Cloud command line tools (disabled)
@@ -36,9 +35,6 @@ RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo 
     && dnf config-manager addrepo --from-repofile="https://cli.github.com/packages/rpm/gh-cli.repo" \
     && dnf install -y gh --repo gh-cli \
     && dnf config-manager setopt gh-cli.enabled=0 \
-    && dnf -y install \
-      policycoreutils \
-      fedora-workstation-repositories \
     && dnf -y install \
       ShellCheck \
       black \
