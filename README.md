@@ -14,7 +14,6 @@ under the [travier](https://quay.io/user/travier) namespace.
 | Quay.io repository | Description |
 |-|-|
 | [filebrowser](https://quay.io/repository/travier/filebrowser) | Based on [Filebrowser](https://github.com/filebrowser/filebrowser)'s official container image |
-| [libvirtd](https://quay.io/repository/travier/libvirtd) | [libvirt](https://libvirt.org/) daemon to run on rpm-ostree based systems (see [README](libvirtd/README.md))|
 | [nginx](https://quay.io/repository/travier/nginx) | [nginx](https://nginx.org/) |
 | [php-fpm-ttrss](https://quay.io/repository/travier/php-fpm-ttrss) | [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) and modules for [Tiny Tiny RSS](https://tt-rss.org/) |
 | [quasselcore](https://quay.io/repository/travier/quasselcore) | [Quassel IRC](https://quassel-irc.org/) |
@@ -28,6 +27,17 @@ The toolbox container images are based on the Fedora toolbox container image.
 |-|-|
 | [toolbox](https://quay.io/repository/travier/toolbox) | Personal toolbox for general use cases |
 | [toolbox-kdedev](https://quay.io/repository/travier/toolbox-kdedev) | Tools and dependencies needed for KDE development |
+
+## Unmaintained images and experiments
+
+Those images are kept in the repo for reference and sporadic uses but are not
+actively maintained nor regularly updated.
+
+| Quay.io repository | Description |
+|-|-|
+| [kdedev](https://quay.io/repository/travier/kdedev) | Experiment to make a smaller KDE development toolbox (work in progress, not maintained, use `toolbox-kdedev` instead) |
+| [toolbox-cloud-cli](https://quay.io/repository/travier/toolbox-cloud-cli) | Cloud cli pre-installed (not actively maintained, no regular updates) |
+| [toolbox-texlive](https://quay.io/repository/travier/toolbox-texlive) | TeX Live tools for LaTeX |
 
 ## Verifying sigstore container signatures with podman
 
