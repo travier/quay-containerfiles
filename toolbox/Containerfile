@@ -4,7 +4,6 @@ FROM registry.fedoraproject.org/fedora-toolbox:41
 # - Install gh (GitHub) cli
 # - Install build dependencies for some Rust applications
 # - Install virt-install
-# - Install Cloud command line tools (disabled)
 # - Remove mlocate
 RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo \
     && dnf -y update \
@@ -62,9 +61,6 @@ RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo 
       go \
       --exclude=mercurial,subversion \
     && dnf -y install \
-      mkosi \
-      --exclude=apt,arch-install-scripts,archlinux-keyring,debian-keyring,logrotate,pacman,zypper \
-    && dnf -y install \
       butane \
       coreos-installer \
       ignition-validate \
@@ -74,7 +70,6 @@ RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo 
       dejavu-sans-fonts \
       dejavu-sans-mono-fonts \
       graphviz \
-      hugo \
       npm \
       pandoc \
       pdf-stapler \
@@ -82,7 +77,6 @@ RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo 
       ruby \
       ruby-devel \
       rubygem-bundler \
-      yt-dlp \
       --exclude=adobe-source-code-pro-fonts,logrotate,low-memory-monitor,nodejs-docs,nodejs-full-i18n,pipewire,tracker,tracker-miners,upower,xdg-desktop-portal-gtk \
     && dnf -y install \
       openssl-devel \
