@@ -5,108 +5,128 @@ FROM registry.fedoraproject.org/fedora-toolbox:41
 # - Install build dependencies for some Rust applications
 # - Install virt-install
 # - Remove mlocate
-RUN sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo \
-    && dnf -y update \
-    && dnf -y install \
-      bind-utils \
-      fd-find \
-      fzf \
-      git-absorb \
-      git-credential-libsecret \
-      git-delta \
-      inotify-tools \
-      jq \
-      just \
-      make \
-      minisign \
-      mkpasswd \
-      pwgen \
-      restic \
-      ripgrep \
-      skopeo \
-      socat \
-      sqlite \
-      vim \
-      zoxide \
-      zsh \
-    && dnf install -y 'dnf-command(config-manager)' \
-    && dnf config-manager addrepo --from-repofile="https://cli.github.com/packages/rpm/gh-cli.repo" \
-    && dnf install -y gh --repo gh-cli \
-    && dnf config-manager setopt gh-cli.enabled=0 \
-    && dnf -y install \
-      ShellCheck \
-      black \
-      clang-format \
-      copr-cli \
-      createrepo_c \
-      g++ \
-      gcc \
-      intltool \
-      json-glib-devel \
-      meson \
-      pylint \
-      python3-dateparser \
-      python3-pip \
-      python3-rust2rpm \
-      shfmt \
-      source-foundry-hack-fonts \
-      yamllint \
-    && dnf -y install \
-      erofs-utils \
-    && dnf -y install \
-      flatpak-builder \
-      --exclude=adobe-source-code-pro-fonts,glib-networking,low-memory-monitor,memstrack,p11-kit-server,pipewire,tpm2-tools,xdg-desktop-portal \
-    && dnf -y install \
-      fbrnch \
-      fedpkg \
-      --exclude=podman,btrfs-progs \
-    && dnf -y install \
-      go \
-      --exclude=mercurial,subversion \
-    && dnf -y install \
-      butane \
-      coreos-installer \
-      ignition-validate \
-    && dnf -y install \
-      ImageMagick \
-      brotli \
-      dejavu-sans-fonts \
-      dejavu-sans-mono-fonts \
-      graphviz \
-      npm \
-      pandoc \
-      pdf-stapler \
-      qrencode \
-      ruby \
-      ruby-devel \
-      rubygem-bundler \
-      --exclude=adobe-source-code-pro-fonts,logrotate,low-memory-monitor,nodejs-docs,nodejs-full-i18n,pipewire,tracker,tracker-miners,upower,xdg-desktop-portal-gtk \
-    && dnf -y install \
-      openssl-devel \
-      perl-FindBin \
-      perl-IPC-Cmd \
-      perl-File-Compare \
-    && dnf -y install \
-      virt-install \
-    && dnf -y remove mlocate \
-    && dnf clean all \
-    && ln -snf /run/host/run/libvirt /run/libvirt
+RUN <<EORUN
+set -euxo pipefail
+sed -i "s/enabled=1/enabled=0/" "/etc/yum.repos.d/fedora-cisco-openh264.repo"
+dnf -y update
+
+dnf -y install \
+    bind-utils \
+    fd-find \
+    fzf \
+    git-absorb \
+    git-credential-libsecret \
+    git-delta \
+    inotify-tools \
+    jq \
+    just \
+    make \
+    minisign \
+    mkpasswd \
+    pwgen \
+    restic \
+    ripgrep \
+    skopeo \
+    socat \
+    sqlite \
+    vim \
+    zoxide \
+    zsh
+
+dnf install -y 'dnf-command(config-manager)'
+dnf config-manager addrepo --from-repofile="https://cli.github.com/packages/rpm/gh-cli.repo"
+dnf install -y gh --repo gh-cli
+dnf config-manager setopt gh-cli.enabled=0
+
+dnf -y install \
+    ShellCheck \
+    black \
+    clang-format \
+    copr-cli \
+    createrepo_c \
+    g++ \
+    gcc \
+    intltool \
+    json-glib-devel \
+    meson \
+    pylint \
+    python3-dateparser \
+    python3-pip \
+    python3-rust2rpm \
+    shfmt \
+    source-foundry-hack-fonts \
+    yamllint
+
+dnf -y install \
+    erofs-utils
+
+dnf -y install \
+    flatpak-builder \
+    --exclude=adobe-source-code-pro-fonts,glib-networking,low-memory-monitor,memstrack,p11-kit-server,pipewire,tpm2-tools,xdg-desktop-portal
+
+dnf -y install \
+    fbrnch \
+    fedpkg \
+    --exclude=podman,btrfs-progs
+
+dnf -y install \
+    go \
+    --exclude=mercurial,subversion
+
+dnf -y install \
+    butane \
+    coreos-installer \
+    ignition-validate
+
+dnf -y install \
+    ImageMagick \
+    brotli \
+    dejavu-sans-fonts \
+    dejavu-sans-mono-fonts \
+    graphviz \
+    npm \
+    pandoc \
+    pdf-stapler \
+    qrencode \
+    ruby \
+    ruby-devel \
+    rubygem-bundler \
+    --exclude=adobe-source-code-pro-fonts,logrotate,low-memory-monitor,nodejs-docs,nodejs-full-i18n,pipewire,tracker,tracker-miners,upower,xdg-desktop-portal-gtk
+
+dnf -y install \
+    openssl-devel \
+    perl-FindBin \
+    perl-IPC-Cmd \
+    perl-File-Compare
+
+dnf -y install \
+  virt-install
+
+dnf -y remove mlocate
+dnf clean all
+ln -snf /run/host/run/libvirt /run/libvirt
+EORUN
 
 # Setup host-runner script and symlinks
 COPY host-runner /usr/local/bin/host-runner
-RUN bins=( \
-    "btop" \
-    "firefox" \
-    "flatpak" \
-    "htop" \
-    "podman" \
-    "rpm-ostree" \
-    "systemctl" \
-    "xdg-open" \
-    ); \
-    for f in "${bins[@]}"; do \
-        ln -s host-runner /usr/local/bin/$f;\
-    done
+RUN <<EORUN
+set -euxo pipefail
+bins=(
+    "btop"
+    "code"
+    "codium"
+    "firefox"
+    "flatpak"
+    "htop"
+    "podman"
+    "rpm-ostree"
+    "systemctl"
+    "xdg-open"
+);
+for f in "${bins[@]}"; do
+    ln -s host-runner /usr/local/bin/$f;
+done
+EORUN
 
 # No need to clear the output as we will never use ZSH as a login shell and
 # this clears output when exiting toolboxes.

@@ -1,14 +1,17 @@
 FROM registry.fedoraproject.org/fedora:41
 
 # Install nginx, remove unneeded packages and remove all SUID/SGID binaries
-RUN rm /etc/dnf/protected.d/sudo.conf && \
-    sed -i "s/enabled=1/enabled=0/" /etc/yum.repos.d/fedora-cisco-openh264.repo && \
-    dnf -y remove pam sudo && \
-    dnf -y update && \
-    dnf -y install nginx && \
-    dnf -y remove shadow-utils && \
-    dnf clean all && \
-    find /usr \( -perm -4000 -o -perm -2000 \) -exec rm -fv {} \;
+RUN <<EORUN
+set -xeuo pipefail
+rm /etc/dnf/protected.d/sudo.conf
+sed -i "s/enabled=1/enabled=0/" "/etc/yum.repos.d/fedora-cisco-openh264.repo"
+dnf -y remove pam sudo
+dnf -y update
+dnf -y install nginx
+dnf -y remove shadow-utils
+dnf clean all
+find /usr \( -perm -4000 -o -perm -2000 \) -exec rm -fv {} \;
+EORUN
 
 USER nginx
 CMD ["/usr/sbin/nginx", "-g", "daemon off;error_log /dev/stdout info;"]
