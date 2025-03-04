@@ -98,7 +98,6 @@ RUN bins=( \
     "btop" \
     "firefox" \
     "flatpak" \
-    "google-chrome" \
     "htop" \
     "podman" \
     "rpm-ostree" \
