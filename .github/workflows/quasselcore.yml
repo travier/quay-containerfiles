@@ -1,4 +1,4 @@
-name: "Build quasselcore image"
+name: "Build container: quasselcore"
 
 env:
   NAME: "quasselcore"

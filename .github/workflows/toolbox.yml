@@ -1,4 +1,4 @@
-name: "Build toolbox image"
+name: "Build container: toolbox"
 
 env:
   NAME: "toolbox"
@@ -33,11 +33,17 @@ concurrency:
 jobs:
   build-push-image:
     runs-on: ubuntu-24.04
+    container:
+      image: quay.io/travier/podman-action
+      options: "--security-opt=label=disable --privileged --user 0:0 --device=/dev/kvm --device=/dev/fuse --volume /:/run/host:rw"
     steps:
+      - name: Fixup GitHub homedir
+        run: |
+          mkdir -p /github/home/.docker/
+
       - name: Reclaim disk space
         run: |
-          sudo docker image prune --all --force
-          sudo rm -rf "/usr/local/lib/android"
+          rm -rf "/run/host/usr/local/lib/android"
 
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -73,6 +79,7 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.BOT_USERNAME }}
           password: ${{ secrets.BOT_SECRET }}
+          auth_file_path: /tmp/auth.json
 
       - uses: sigstore/cosign-installer@v3.8.1
         if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
