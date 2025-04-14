@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora-toolbox:41
+FROM registry.fedoraproject.org/fedora-toolbox:42
 
 # Can not use herdocs here until GitHub workflows move to a newer Ubuntu
 # release with a newer buildah:

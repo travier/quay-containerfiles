@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora-toolbox:41
+FROM registry.fedoraproject.org/fedora-toolbox:42
 
 # - Install common development tools
 # - Install all build deps for kdesrc-build (plasma only, no apps)
