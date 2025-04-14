@@ -13,24 +13,28 @@ main() {
         exit 1
     fi
 
-    containers=(
+    apps=(
         'filebrowser'
         'nginx'
         'php-fpm-ttrss'
-        'toolbox-kdedev'
-        'toolbox'
         'unbound'
     )
+    toolboxes=(
+        'toolbox-kdedev'
+        'toolbox'
+    )
 
-    for c in "${containers[@]}"; do
-        generate "${c}"
+    for c in "${apps[@]}"; do
+        generate "${c}" ".github_workflows_template.yml"
+    done
+    for c in "${toolboxes[@]}"; do
+        generate "${c}" ".github_workflows_template_toolbox.yml"
     done
 }
 
 generate() {
     local -r name="${1}"
-
-    local -r template=".github_workflows_template.yml"
+    local -r template="${2}"
 
     {
     sed \
