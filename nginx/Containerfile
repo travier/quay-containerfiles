@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:41
+FROM registry.fedoraproject.org/fedora:42
 
 # Install nginx, remove unneeded packages and remove all SUID/SGID binaries
 RUN <<EORUN
