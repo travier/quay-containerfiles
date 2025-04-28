@@ -79,7 +79,7 @@ jobs:
           password: ${{ secrets.BOT_SECRET }}
           auth_file_path: /tmp/auth.json
 
-      - uses: sigstore/cosign-installer@v3.8.1
+      - uses: sigstore/cosign-installer@v3.8.2
         if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
 
       - name: Sign container image
