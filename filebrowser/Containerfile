@@ -13,7 +13,7 @@ dnf clean all
 find /usr \( -perm -4000 -o -perm -2000 \) -exec rm -fv {} \;
 EORUN
 
-COPY --from=binary /filebrowser /usr/bin/filebrowser
+COPY --from=binary /bin/filebrowser /usr/bin/filebrowser
 
 # Run unprivileged
 USER 2000:2000
