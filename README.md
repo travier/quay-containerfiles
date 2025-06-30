@@ -16,7 +16,6 @@ under the [travier](https://quay.io/user/travier) namespace.
 | [filebrowser](https://quay.io/repository/travier/filebrowser) | Based on [Filebrowser](https://github.com/filebrowser/filebrowser)'s official container image |
 | [nginx](https://quay.io/repository/travier/nginx) | [nginx](https://nginx.org/) |
 | [php-fpm-ttrss](https://quay.io/repository/travier/php-fpm-ttrss) | [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) and modules for [Tiny Tiny RSS](https://tt-rss.org/) |
-| [quasselcore](https://quay.io/repository/travier/quasselcore) | [Quassel IRC](https://quassel-irc.org/) |
 | [unbound](https://quay.io/repository/travier/unbound) | [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/) |
 
 ## Toolbox containers and tools
@@ -35,9 +34,7 @@ actively maintained nor regularly updated.
 
 | Quay.io repository | Description |
 |-|-|
-| [kdedev](https://quay.io/repository/travier/kdedev) | Experiment to make a smaller KDE development toolbox (work in progress, not maintained, use `toolbox-kdedev` instead) |
 | [toolbox-cloud-cli](https://quay.io/repository/travier/toolbox-cloud-cli) | Cloud cli pre-installed (not actively maintained, no regular updates) |
-| [toolbox-texlive](https://quay.io/repository/travier/toolbox-texlive) | TeX Live tools for LaTeX |
 
 ## Verifying sigstore container signatures with podman
 
