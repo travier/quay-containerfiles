@@ -92,7 +92,7 @@ dnf -y install \
     ruby \
     ruby-devel \
     rubygem-bundler \
-    --exclude=adobe-source-code-pro-fonts,logrotate,low-memory-monitor,nodejs-docs,nodejs-full-i18n,pipewire,tracker,tracker-miners,upower,xdg-desktop-portal-gtk
+    --exclude=adobe-source-code-pro-fonts,logrotate,low-memory-monitor,nodejs-docs,pipewire,tracker,tracker-miners,upower,xdg-desktop-portal-gtk
 
 dnf -y install \
     openssl-devel \
