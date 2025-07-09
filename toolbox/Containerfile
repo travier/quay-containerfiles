@@ -15,6 +15,7 @@ dnf -y install \
     bind-utils \
     fd-find \
     fzf \
+    gh \
     git-absorb \
     git-credential-libsecret \
     git-delta \
@@ -33,11 +34,6 @@ dnf -y install \
     vim \
     zoxide \
     zsh
-
-dnf install -y 'dnf-command(config-manager)'
-dnf config-manager addrepo --from-repofile="https://cli.github.com/packages/rpm/gh-cli.repo"
-dnf install -y gh --repo gh-cli
-dnf config-manager setopt gh-cli.enabled=0
 
 dnf -y install \
     ShellCheck \
