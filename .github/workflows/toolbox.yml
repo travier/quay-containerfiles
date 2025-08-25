@@ -46,7 +46,7 @@ jobs:
           rm -rf "/run/host/usr/local/lib/android"
 
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Build container image
         uses: redhat-actions/buildah-build@v2
