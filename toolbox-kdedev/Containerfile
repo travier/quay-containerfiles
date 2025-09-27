@@ -7,7 +7,7 @@ FROM registry.fedoraproject.org/fedora-toolbox:42
 #   encountered during flatpak installation.
 # - Remove mlocate
 RUN <<EORUN
-set -xeuo pipefail
+set -euxo pipefail
 sed -i "s/enabled=1/enabled=0/" "/etc/yum.repos.d/fedora-cisco-openh264.repo"
 dnf -y update
 
