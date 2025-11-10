@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:42
+FROM registry.fedoraproject.org/fedora:43
 
 # Install unbound, remove unneeded packages and remove all SUID/SGID binaries
 RUN <<EORUN
