@@ -1,12 +1,9 @@
-FROM registry.fedoraproject.org/fedora:43
+FROM registry.fedoraproject.org/fedora-minimal:43
 
 # Install php and required modules, remove unneeded packages and remove all SUID/SGID binaries
 RUN <<EORUN
 set -xeuo pipefail
-rm /etc/dnf/protected.d/sudo.conf
-rm /usr/share/dnf5/libdnf.conf.d/protect-sudo.conf
 sed -i "s/enabled=1/enabled=0/" "/etc/yum.repos.d/fedora-cisco-openh264.repo"
-dnf -y remove pam sudo
 dnf -y update
 dnf -y install git php-cli php-fpm \
     /etc/php.d/20-bz2.ini \
