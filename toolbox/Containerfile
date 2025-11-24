@@ -25,6 +25,7 @@ dnf -y install \
     make \
     minisign \
     mkpasswd \
+    parallel \
     pwgen \
     restic \
     ripgrep \
