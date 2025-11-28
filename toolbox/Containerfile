@@ -72,6 +72,10 @@ dnf -y install \
     --exclude=mercurial,subversion
 
 dnf -y install \
+    reuse \
+    --exclude=mercurial,dpkg-dev,python3-apt
+
+dnf -y install \
     butane \
     coreos-installer \
     ignition-validate
