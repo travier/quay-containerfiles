@@ -19,6 +19,7 @@ dnf -y install \
     git-absorb \
     git-credential-libsecret \
     git-delta \
+    git-filter-repo \
     inotify-tools \
     jq \
     just \
