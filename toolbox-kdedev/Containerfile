@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora-toolbox:43
+FROM registry.fedoraproject.org/fedora-toolbox:43 as builder
 
 # - Install common development tools
 # - Install all build deps for kdesrc-build (plasma only, no apps)
@@ -158,3 +158,12 @@ EORUN
 # No need to clear the output as we will never use ZSH as a login shell and
 # this clears output when exiting toolboxes.
 RUN sed -i '/clear/d' /etc/zlogout
+
+# Rechunk
+FROM quay.io/jlebon/chunkah AS chunkah
+RUN --mount=from=builder,src=/,target=/chunkah,ro \
+    --mount=type=bind,target=/run/src,rw \
+        chunkah build > /run/src/out.ociarchive
+
+# Final image
+FROM oci-archive:out.ociarchive
