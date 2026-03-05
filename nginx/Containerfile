@@ -18,9 +18,13 @@ dnf install -y \
     --nodocs \
     fedora-release-container \
     glibc-minimal-langpack \
-    nginx nginx-mod-brotli nginx-mod-headers-more
+    nginx-core \
+    nginx-mod-brotli \
+    nginx-mod-headers-more \
+    nginx-mod-stream
 
-# Manual cleanup of a few packages we don't need
+# Manual cleanup of a few packages we don't need until we land:
+# https://src.fedoraproject.org/rpms/nginx/pull-request/22
 rm -rf /etc/dnf/protected.d/systemd.conf /usr/share/dnf5/libdnf.conf.d/protect-systemd.conf
 rpm --root /output --erase --nodeps --noscripts --notriggers --verbose \
     dbus \
