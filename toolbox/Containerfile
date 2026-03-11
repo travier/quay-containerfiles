@@ -20,6 +20,7 @@ dnf -y install \
     git-credential-libsecret \
     git-delta \
     git-filter-repo \
+    host-spawn \
     inotify-tools \
     jq \
     just \
@@ -110,8 +111,7 @@ dnf clean all
 ln -snf /run/host/run/libvirt /run/libvirt
 EORUN
 
-# Setup host-runner script and symlinks
-COPY host-runner /usr/local/bin/host-runner
+# Setup host-spawn symlinks
 RUN <<EORUN
 set -euxo pipefail
 bins=(
@@ -127,7 +127,7 @@ bins=(
     "xdg-open"
 );
 for f in "${bins[@]}"; do
-    ln -s host-runner /usr/local/bin/$f;
+    ln -s /usr/bin/host-spawn /usr/local/bin/$f
 done
 EORUN
 
