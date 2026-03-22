@@ -7,6 +7,8 @@ build target:
     #!/bin/bash
     set -euox pipefail
 
+    mkdir -p "$(pwd)/cache.libdnf5"
+
     podman build \
         {{podman_build_opts}} \
         --volume "$(pwd):/run/src" \
