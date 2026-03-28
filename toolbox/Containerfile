@@ -106,13 +106,13 @@ dnf -y install \
 dnf -y install \
   virt-install
 
+# Setup symlink for access to system libvirt
+ln -snf /run/host/run/libvirt /run/libvirt
+
 dnf -y remove mlocate
 dnf clean all
-ln -snf /run/host/run/libvirt /run/libvirt
-EORUN
 
 # Setup host-spawn symlinks
-RUN <<EORUN
 set -euxo pipefail
 bins=(
     "btop"
@@ -129,11 +129,11 @@ bins=(
 for f in "${bins[@]}"; do
     ln -s /usr/bin/host-spawn /usr/local/bin/$f
 done
-EORUN
 
 # No need to clear the output as we will never use ZSH as a login shell and
 # this clears output when exiting toolboxes.
-RUN sed -i '/clear/d' /etc/zlogout
+sed -i '/clear/d' /etc/zlogout
+EORUN
 
 # Rechunk
 FROM quay.io/jlebon/chunkah AS chunkah
