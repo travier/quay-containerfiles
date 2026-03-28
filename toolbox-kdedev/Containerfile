@@ -160,7 +160,7 @@ EORUN
 RUN sed -i '/clear/d' /etc/zlogout
 
 # Rechunk
-FROM quay.io/jlebon/chunkah AS chunkah
+FROM quay.io/coreos/chunkah AS chunkah
 RUN --mount=from=builder,src=/,target=/chunkah,ro \
     --mount=type=bind,target=/run/src,rw \
         chunkah build > /run/src/out.ociarchive
