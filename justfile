@@ -28,3 +28,5 @@ unbound: (build "unbound")
 toolbox: (build "toolbox")
 
 toolbox-kdedev: (build "toolbox-kdedev")
+
+toolbox-cloud-cli: (build "toolbox-cloud-cli")
