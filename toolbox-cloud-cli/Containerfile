@@ -1,27 +1,34 @@
-FROM registry.fedoraproject.org/fedora-toolbox:43
-
-# Can not use herdocs here until GitHub workflows move to a newer Ubuntu
-# release with a newer buildah:
-# - https://www.docker.com/blog/introduction-to-heredocs-in-dockerfiles/
-# - https://github.com/containers/buildah/issues/3474
-COPY google-cloud-sdk.repo /etc/yum.repos.d/google-cloud-sdk.repo
+FROM registry.fedoraproject.org/fedora-toolbox:43 as builder
 
 # - Install common tools
 # - Install cloud command line tools
 # - Remove mlocate
 RUN <<EORUN
-set -xeuo pipefail
+set -euxo pipefail
 sed -i "s/enabled=1/enabled=0/" "/etc/yum.repos.d/fedora-cisco-openh264.repo"
 dnf -y update
+
 dnf -y install \
   git-absorb \
   git-delta \
+  host-spawn \
   jq \
   just \
   ripgrep \
   sqlite \
   vim \
   zsh
+
+cat > /etc/yum.repos.d/google-cloud-sdk.repo <<'EOF'
+[google-cloud-cli]
+name=Google Cloud CLI
+baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el9-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=0
+gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
 dnf -y install \
   awscli \
   azure-cli \
@@ -37,14 +44,44 @@ ARG DOCTL_SHA256SUMS="f758b0c2fb7857db2bd00439155154f2ab8bee71c4f3640f90f64ec352
 
 # Manually install doctl
 RUN <<EORUN
-set -xeuo pipefail
+set -euxo pipefail
 wget "${DOCTL_URL}"
 echo "${DOCTL_SHA256SUMS}" | sha256sum --check
 tar xf doctl-*-linux-amd64.tar.gz
 rm doctl-*-linux-amd64.tar.gz
 install -o 0 -g 0 -m 755 doctl /usr/local/bin/doctl
-EORUN
+
+dnf -y remove mlocate
+dnf clean all
+
+# Setup host-spawn symlinks
+set -euxo pipefail
+bins=(
+    "btop"
+    "code"
+    "codium"
+    "firefox"
+    "flatpak"
+    "htop"
+    "podman"
+    "rpm-ostree"
+    "systemctl"
+    "xdg-open"
+);
+for f in "${bins[@]}"; do
+    ln -s /usr/bin/host-spawn /usr/local/bin/$f
+done
 
 # No need to clear the output as we will never use ZSH as a login shell and
 # this clears output when exiting toolboxes.
-RUN sed -i '/clear/d' /etc/zlogout
+sed -i '/clear/d' /etc/zlogout
+EORUN
+
+# Rechunk
+FROM quay.io/coreos/chunkah AS chunkah
+RUN --mount=from=builder,src=/,target=/chunkah,ro \
+    --mount=type=bind,target=/run/src,rw \
+        chunkah build > /run/src/out.ociarchive
+
+# Final image
+FROM oci-archive:out.ociarchive

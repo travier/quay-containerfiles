@@ -16,6 +16,7 @@ dnf -y install \
   fd-find \
   git-absorb \
   git-delta \
+  host-spawn \
   inotify-tools \
   jq \
   just \
@@ -132,11 +133,8 @@ dnf -y install \
 
 dnf -y remove mlocate
 dnf clean all
-EORUN
 
-# Setup host-runner script and symlinks
-COPY host-runner /usr/local/bin/host-runner
-RUN <<EORUN
+# Setup host-spawn symlinks
 set -euxo pipefail
 bins=(
     "btop"
@@ -151,13 +149,13 @@ bins=(
     "xdg-open"
 );
 for f in "${bins[@]}"; do
-    ln -s host-runner /usr/local/bin/$f;
+    ln -s /usr/bin/host-spawn /usr/local/bin/$f
 done
-EORUN
 
 # No need to clear the output as we will never use ZSH as a login shell and
 # this clears output when exiting toolboxes.
-RUN sed -i '/clear/d' /etc/zlogout
+sed -i '/clear/d' /etc/zlogout
+EORUN
 
 # Rechunk
 FROM quay.io/coreos/chunkah AS chunkah
