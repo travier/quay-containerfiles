@@ -1,0 +1,92 @@
+# SPDX-FileCopyrightText: Timothée Ravier <tim@siosm.fr>
+# SPDX-License-Identifier: CC0-1.0
+
+name: "Build container"
+description: "Build a container image"
+inputs:
+  name:
+    description: "Name of the container image to build"
+    type: "string"
+    required: true
+  registry:
+    description: "Registry to push the container image to"
+    type: "string"
+    required: true
+  username:
+    description: "Username to use to log in to the registry"
+    type: "string"
+    required: true
+  password:
+    description: "Password to use to log in to the registry"
+    type: "string"
+    required: true
+  cosign-private-key:
+    description: "Cosign private key to sign the container with"
+    type: "string"
+    required: true
+  freespace:
+    description: "Set to true to free up more space on the runner"
+    type: "boolean"
+    default: false
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Fixup GitHub homedir"
+      shell: "bash"
+      run: mkdir -p /github/home/.docker/
+
+    - name: "Reclaim disk space"
+      if: ${{ inputs.freespace == 'true' }}
+      shell: "bash"
+      run: rm -rf "/run/host/usr/local/lib/android"
+
+    - name: "Build container image"
+      uses: redhat-actions/buildah-build@v2
+      with:
+        context: ${{ inputs.name }}
+        image: ${{ inputs.name }}
+        containerfiles: ${{ inputs.name }}/Containerfile
+        tags: "latest"
+        # FIXME
+        extra-args: |
+          --skip-unused-stages=false
+          --security-opt=label=disable
+          --volume /__w/containerfiles/containerfiles:/run/src
+
+    - name: "Push to Container Registry"
+      uses: redhat-actions/push-to-registry@v2
+      id: "push"
+      if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
+      with:
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
+        registry: ${{ inputs.registry }}
+        image: ${{ inputs.name }}
+        tags: "latest"
+        extra-args: |
+          --compression-format=zstd:chunked
+          --compression-level=19
+
+    - name: "Login to Container Registry"
+      uses: redhat-actions/podman-login@v1
+      if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
+      with:
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
+        registry: ${{ inputs.registry }}
+        auth_file_path: "/tmp/auth.json"
+
+    - name: "Install cosign"
+      uses: sigstore/cosign-installer@v3.10.0
+      if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
+
+    - name: "Sign container image"
+      if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
+      shell: "bash"
+      run: |
+        cosign sign -y --key env://COSIGN_PRIVATE_KEY ${{ inputs.registry }}/${{ inputs.name }}@${{ steps.push.outputs.digest }}
+      env:
+        COSIGN_EXPERIMENTAL: false
+        COSIGN_PRIVATE_KEY: ${{ inputs.cosign-private-key }}
