@@ -1,7 +1,31 @@
 FROM registry.fedoraproject.org/fedora-minimal:44 as builder
 
-RUN <<EORUN
+ARG DNF_KEEP_CACHE=false
+
+RUN --mount=type=tmpfs,target=/run \
+    --mount=type=tmpfs,target=/tmp \
+    --mount=type=tmpfs,target=/var \
+<<EORUN
 set -xeuo pipefail
+
+# Packages to install:
+# - nginx and additional modules
+packages=(
+    "unbound"
+)
+
+# Packages to manually remove after the initial package installation:
+# - findutils, grep & sed: ca-certificates deps, not needed after installation
+packages_remove=(
+    "expat"
+    "findutils"
+    "grep"
+    "sed"
+)
+
+# List of paths to manually remove after package installation
+cleanup=(
+)
 
 sed -i "s/enabled=1/enabled=0/" "/etc/yum.repos.d/fedora-cisco-openh264.repo"
 
@@ -13,7 +37,7 @@ fi
 
 mkdir -p /output
 
-# Install unbound
+# Install required packages
 dnf install -y \
     --releasever 44 \
     --forcearch "x86_64" \
@@ -23,19 +47,76 @@ dnf install -y \
     --nodocs \
     fedora-release-container \
     glibc-minimal-langpack \
-    unbound
+    "${packages[@]}"
 
-# Manual cleanup of a few packages we don't need
+
+# Additional packages to manually remove after the initial package installation:
+# - fedora-gpg-keys & fedora-repos: not needed after installation
+packages_remove+=(
+    "fedora-gpg-keys"
+    "fedora-repos"
+)
+
+# Remove packages after installation
 rpm --root /output --erase --nodeps --noscripts --notriggers --verbose \
-    expat \
-    fedora-gpg-keys \
-    fedora-repos
+    "${packages_remove[@]}"
 
 # List all installed RPMs
 rpm -qa --root /output | sort -h
 
 # Remove all SUID/SGID binaries
-find /usr \( -perm -4000 -o -perm -2000 \) -exec rm -fv {} \;
+find /output/usr \( -perm -4000 -o -perm -2000 \) -exec rm -v {} \;
+
+# Clean up leftover files from dnf
+cleanup+=(
+    "/etc/dnf"
+    "/run/dnf"
+    "/usr/lib/sysimage/libdnf5"
+    "/usr/share/dnf5"
+)
+# Clean up empty docs folders
+cleanup+=(
+    "/usr/share/doc"
+    "/usr/share/info"
+    "/usr/share/man"
+)
+# Clean up other empty folders
+cleanup+=(
+    "/afs"
+    "/boot"
+    "/home"
+    "/media"
+    "/mnt"
+    "/opt"
+    "/root"
+    "/srv"
+    "/usr/games"
+    "/usr/lib/debug"
+    "/usr/lib/games"
+    "/usr/lib/modules"
+    "/usr/local"
+    "/usr/share/X11"
+    "/usr/share/augeas"
+    "/usr/share/bash-completion"
+    "/usr/share/fish"
+    "/usr/share/games"
+    "/usr/share/gnome"
+    "/usr/share/help"
+    "/usr/share/ima"
+    "/usr/share/modulefiles"
+    "/usr/share/pkgconfig"
+    "/usr/share/sounds"
+    "/usr/share/themes"
+    "/usr/share/wayland-sessions"
+    "/usr/share/xsessions"
+    "/usr/share/zsh"
+    "/usr/src"
+    "/usr/tmp"
+)
+# Do the clean up
+for p in "${cleanup[@]}"; do
+    rm -rv "/output${p}"
+done
 EORUN
 
 # Rechunk
