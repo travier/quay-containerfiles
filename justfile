@@ -12,6 +12,7 @@ build target:
     podman build \
         {{podman_build_opts}} \
         --volume "$(pwd):/run/src" \
+        --build-arg="DNF_KEEP_CACHE=true" \
         --volume "$(pwd)/cache.libdnf5:/output/var/cache/libdnf5:rw,z" \
         --tag {{target}} \
         --file {{target}}/Containerfile \

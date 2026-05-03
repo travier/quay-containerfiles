@@ -1,10 +1,17 @@
 FROM registry.fedoraproject.org/fedora-minimal:43 as builder
 
+ARG DNF_KEEP_CACHE=false
+
 RUN <<EORUN
 set -xeuo pipefail
 
 sed -i "s/enabled=1/enabled=0/" "/etc/yum.repos.d/fedora-cisco-openh264.repo"
-echo -e "[main]\nkeepcache=True" > "/etc/dnf/libdnf5.conf.d/keepcache.conf"
+
+if [[ "${DNF_KEEP_CACHE}" == "true" ]]; then
+    # For faster local iterations. Must be combined with:
+    # --volume "$(pwd)/cache.libdnf5:/output/var/cache/libdnf5:rw,z"
+    echo -e "[main]\nkeepcache=True" > "/etc/dnf/libdnf5.conf.d/keepcache.conf"
+fi
 
 mkdir -p /output
 
