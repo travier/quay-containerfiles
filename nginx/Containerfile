@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora-minimal:43 as builder
+FROM registry.fedoraproject.org/fedora-minimal:44 as builder
 
 ARG DNF_KEEP_CACHE=false
 
@@ -17,7 +17,7 @@ mkdir -p /output
 
 # Install nginx and additional modules
 dnf install -y \
-    --releasever 43 \
+    --releasever 44 \
     --forcearch "x86_64" \
     --installroot /output \
     --use-host-config \
