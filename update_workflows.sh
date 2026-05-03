@@ -14,7 +14,6 @@ main() {
     fi
 
     apps=(
-        'filebrowser'
         'nginx'
         'php-fpm-ttrss'
         'unbound'

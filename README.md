@@ -13,7 +13,6 @@ under the [travier](https://quay.io/user/travier) namespace.
 
 | Quay.io repository | Description |
 |-|-|
-| [filebrowser](https://quay.io/repository/travier/filebrowser) | Based on [Filebrowser](https://github.com/filebrowser/filebrowser)'s official container image |
 | [nginx](https://quay.io/repository/travier/nginx) | [nginx](https://nginx.org/) |
 | [php-fpm-ttrss](https://quay.io/repository/travier/php-fpm-ttrss) | [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) and modules for [Tiny Tiny RSS](https://tt-rss.org/) |
 | [unbound](https://quay.io/repository/travier/unbound) | [Unbound](https://www.nlnetlabs.nl/projects/unbound/about/) |
