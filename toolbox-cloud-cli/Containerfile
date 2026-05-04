@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora-toolbox:43 as builder
+FROM registry.fedoraproject.org/fedora-toolbox:44 as builder
 
 # - Install common tools
 # - Install cloud command line tools
