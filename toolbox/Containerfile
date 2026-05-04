@@ -27,8 +27,6 @@ dnf -y install \
     jq \
     just \
     make \
-    minisign \
-    mkpasswd \
     parallel \
     pwgen \
     restic \
