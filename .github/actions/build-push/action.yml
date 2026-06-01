@@ -43,7 +43,7 @@ runs:
       run: rm -rf "/run/host/usr/local/lib/android"
 
     - name: "Build container image"
-      uses: redhat-actions/buildah-build@v2
+      uses: redhat-actions/buildah-build@7a95fa7ee0f02d552a32753e7414641a04307056 # v2
       with:
         context: ${{ inputs.name }}
         image: ${{ inputs.name }}
@@ -56,7 +56,7 @@ runs:
           --volume /__w/containerfiles/containerfiles:/run/src
 
     - name: "Push to Container Registry"
-      uses: redhat-actions/push-to-registry@v2
+      uses: redhat-actions/push-to-registry@5ed88d269cf581ea9ef6dd6806d01562096bee9c # v2
       id: "push"
       if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
       with:
@@ -70,7 +70,7 @@ runs:
           --compression-level=19
 
     - name: "Login to Container Registry"
-      uses: redhat-actions/podman-login@v1
+      uses: redhat-actions/podman-login@4934294ad0449894bcd1e9f191899d7292469603 # v1
       if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
       with:
         username: ${{ inputs.username }}
@@ -79,7 +79,7 @@ runs:
         auth_file_path: "/tmp/auth.json"
 
     - name: "Install cosign"
-      uses: sigstore/cosign-installer@v3.10.0
+      uses: sigstore/cosign-installer@d7543c93d881b35a8faa02e8e3605f69b7a1ce62 # v3.10.0
       if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
 
     - name: "Sign container image"
