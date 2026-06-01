@@ -34,7 +34,7 @@ jobs:
   build-push-image:
     runs-on: "ubuntu-24.04"
     container:
-      image: "quay.io/travier/podman-action"
+      image: "quay.io/travier/podman-action" # zizmor: ignore[unpinned-images]
       options: "--security-opt=label=disable --privileged --user 0:0 --device=/dev/kvm --device=/dev/fuse"
     steps:
       - name: "Fixup GitHub homedir"
