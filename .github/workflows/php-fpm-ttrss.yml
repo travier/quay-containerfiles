@@ -7,21 +7,21 @@ env:
 on:
   pull_request:
     branches:
-      - main
+      - "main"
     paths:
-      - 'php-fpm-ttrss/**'
-      - '.github/workflows/php-fpm-ttrss.yml'
+      - "php-fpm-ttrss/**"
+      - ".github/workflows/php-fpm-ttrss.yml"
   push:
     branches:
-      - main
+      - "main"
     paths:
-      - 'php-fpm-ttrss/**'
-      - '.github/workflows/php-fpm-ttrss.yml'
+      - "php-fpm-ttrss/**"
+      - ".github/workflows/php-fpm-ttrss.yml"
   schedule:
-    - cron:  '0 0 * * MON'
+    - cron: "0 0 * * MON"
   workflow_dispatch:
 
-permissions: read-all
+permissions: "read-all"
 
 # Prevent multiple workflow runs from racing to ensure that pushes are made
 # sequentialy for the main branch. Also cancel in progress workflow runs for
@@ -32,20 +32,22 @@ concurrency:
 
 jobs:
   build-push-image:
-    runs-on: ubuntu-24.04
+    runs-on: "ubuntu-24.04"
     container:
-      image: quay.io/travier/podman-action
+      image: "quay.io/travier/podman-action" # zizmor: ignore[unpinned-images]
       options: "--security-opt=label=disable --privileged --user 0:0 --device=/dev/kvm --device=/dev/fuse"
     steps:
-      - name: Fixup GitHub homedir
+      - name: "Fixup GitHub homedir"
         run: |
           mkdir -p /github/home/.docker/
 
-      - name: Checkout repo
-        uses: actions/checkout@v6
+      - name: "Checkout repo"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          persist-credentials: false
 
-      - name: Build container image
-        uses: redhat-actions/buildah-build@v2
+      - name: "Build container image"
+        uses: redhat-actions/buildah-build@7a95fa7ee0f02d552a32753e7414641a04307056 # v2
         with:
           context: ${{ env.NAME }}
           image: ${{ env.NAME }}
@@ -54,8 +56,8 @@ jobs:
           layers: false
           oci: true
 
-      - name: Push to Container Registry
-        uses: redhat-actions/push-to-registry@v2
+      - name: "Push to Container Registry"
+        uses: redhat-actions/push-to-registry@5ed88d269cf581ea9ef6dd6806d01562096bee9c # v2
         id: push
         if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
         with:
@@ -68,8 +70,8 @@ jobs:
             --compression-format=zstd:chunked
             --compression-level=19
 
-      - name: Login to Container Registry
-        uses: redhat-actions/podman-login@v1
+      - name: "Login to Container Registry"
+        uses: redhat-actions/podman-login@4934294ad0449894bcd1e9f191899d7292469603 # v1
         if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
         with:
           registry: ${{ env.REGISTRY }}
@@ -77,10 +79,10 @@ jobs:
           password: ${{ secrets.BOT_SECRET }}
           auth_file_path: /tmp/auth.json
 
-      - uses: sigstore/cosign-installer@v3.10.0
+      - uses: sigstore/cosign-installer@d7543c93d881b35a8faa02e8e3605f69b7a1ce62 # v3.10.0
         if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
 
-      - name: Sign container image
+      - name: "Sign container image"
         if: (github.event_name == 'push' || github.event_name == 'schedule') && github.ref == 'refs/heads/main'
         run: |
           cosign sign -y --key env://COSIGN_PRIVATE_KEY ${{ env.REGISTRY }}/${{ env.NAME }}@${{ steps.push.outputs.digest }}
